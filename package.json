@@ -1,0 +1,10 @@
+{
+  "name": "arch-ai-tools-curation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-local.mjs",
+    "dry-run": "DRY_RUN=1 node scripts/build-local.mjs"
+  }
+}

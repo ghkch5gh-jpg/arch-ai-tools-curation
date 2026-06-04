@@ -1,0 +1,72 @@
+[
+  {
+    "name": "McNeel Discourse 최신 (라이노·그래스호퍼 커뮤니티)",
+    "url": "https://discourse.mcneel.com/latest.json?order=created",
+    "kind": "json",
+    "tag": "mcneel",
+    "note": "Rhino/Grasshopper 공식 포럼 최신글 JSON. 신규 플러그인·스크립트·실사용 토론. 도구 발견 1순위."
+  },
+  {
+    "name": "Reddit r/rhino (이번 주 인기)",
+    "url": "https://www.reddit.com/r/rhino/top.rss?t=week&limit=25",
+    "kind": "rss",
+    "tag": "reddit-rhino",
+    "note": "라이노 실무자 커뮤니티. 플러그인·AI 워크플로우·렌더 후기."
+  },
+  {
+    "name": "Reddit r/grasshopper3d (이번 주 인기)",
+    "url": "https://www.reddit.com/r/grasshopper3d/top.rss?t=week&limit=25",
+    "kind": "rss",
+    "tag": "reddit-gh",
+    "note": "그래스호퍼 파라메트릭 커뮤니티. ML 폼파인딩·정의·플러그인."
+  },
+  {
+    "name": "Reddit r/architecture (이번 주 인기)",
+    "url": "https://www.reddit.com/r/architecture/top.rss?t=week&limit=25",
+    "kind": "rss",
+    "tag": "reddit-arch",
+    "note": "건축 일반. AI 도구·렌더·표현 관련 글만 필터가 골라냄."
+  },
+  {
+    "name": "Reddit r/StableDiffusion 건축 검색 (이번 주)",
+    "url": "https://www.reddit.com/r/StableDiffusion/search.rss?q=architecture+OR+architectural+OR+interior&restrict_sr=1&sort=top&t=week",
+    "kind": "rss",
+    "tag": "reddit-sd",
+    "note": "건축 렌더/ControlNet/LoRA 워크플로우. 비주얼 단계 핵심 소스."
+  },
+  {
+    "name": "Parametric Monkey (파라메트릭·GH 튜토리얼)",
+    "url": "https://parametricmonkey.com/feed/",
+    "kind": "rss",
+    "tag": "parametricmonkey",
+    "note": "그래스호퍼·컴퓨테이셔널 디자인 실무 블로그 RSS. 도구·워크플로우 위주."
+  },
+  {
+    "name": "ArchDaily 최신 (RSS — AI 도구 기사만 필터)",
+    "url": "https://www.archdaily.com/feed",
+    "kind": "rss",
+    "tag": "archdaily",
+    "note": "건축 일반 RSS. AI 도구·렌더·표현·워크플로우 기사만 필터가 골라냄. 일반 프로젝트 소개는 제외."
+  },
+  {
+    "name": "Hacker News — architecture render (이번 주)",
+    "url": "https://hn.algolia.com/api/v1/search_by_date?query=architecture%20render&tags=story&numericFilters=created_at_i%3E__SINCE_TS__&hitsPerPage=20",
+    "kind": "json",
+    "tag": "hn-render",
+    "note": "HN에서 건축 렌더/시각화 도구 신호. 최근 것만(__SINCE_TS__)."
+  },
+  {
+    "name": "Hacker News — rhino grasshopper / text to cad (이번 주)",
+    "url": "https://hn.algolia.com/api/v1/search_by_date?query=grasshopper%20OR%20%22text%20to%20cad%22%20OR%20%22sketch%20to%203d%22&tags=story&numericFilters=created_at_i%3E__SINCE_TS__&hitsPerPage=20",
+    "kind": "json",
+    "tag": "hn-cad",
+    "note": "HN에서 모델링·CAD 자동화 도구 신호. 최근 것만."
+  },
+  {
+    "name": "arXiv cs.GR (그래픽스 — 건축CG 데모 있는 것만)",
+    "url": "http://export.arxiv.org/rss/cs.GR",
+    "kind": "rss",
+    "tag": "arxiv-gr",
+    "note": "컴퓨터 그래픽스 최신. 건축 렌더/3D에 바로 써먹게 데모·코드까지 나온 것만 필터가 통과시킴. 순수 이론은 제외."
+  }
+]
