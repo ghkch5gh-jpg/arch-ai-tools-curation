@@ -385,7 +385,7 @@ const note = String(data.edition_note || "").replaceAll('"', "'").trim();
 const introHtml = data.intro ? `<section class="news-flow-sec reveal"><h2 class="news-flow__t">이번 회차 흐름</h2><div class="news-flow"><p>${inlineEsc(data.intro)}</p></div></section>\n` : "";
 const outroHtml = data.outro ? `<div class="news-outro"><span class="news-outro__t">맺음말</span><p>${inlineEsc(data.outro)}</p></div>\n` : "";
 const md = `---
-title: ${dateStr} (${dayOfWeek}) — AI 작업실
+title: ${dateStr} (${dayOfWeek}) — AI Design Stack
 eyebrow: STUDIO · AI TOOLS DAILY
 hero_title: "${dateStr.replaceAll("-", " · ")} <em>(${dayOfWeek})</em>"
 description: "${note}"
@@ -420,9 +420,9 @@ const entries = await Promise.all(files.map(async (f) => {
 }));
 
 const indexMd = `---
-title: AI 작업실
+title: AI Design Stack
 eyebrow: STUDIO · AI TOOLS DAILY
-hero_title: "현상설계 <em>AI 작업실</em>"
+hero_title: "AI <em>Design Stack</em>"
 description: 매일, 현상설계 결과물(컨셉·다이어그램·매싱·라이노/GH·렌더·패널·보고서)을 실제로 더 빨리·낫게 뽑게 해주는 AI 도구·기법만 골라 정리합니다. 데모는 데모라고, 써먹히면 써먹힌다고.
 stats:
   - num: "매일"
