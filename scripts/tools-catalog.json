@@ -1,0 +1,38 @@
+{
+  "_note": "현상설계 실무 AI/디지털 도구 카탈로그. 생성기가 매일 여기서 스포트라이트를 골라 실무 각도로 소개한다(도감 프레임). 직전 2회차에서 다룬 url은 자동 제외돼 자연 로테이션. 새 도구 발견 시 여기 추가. body 세부(가격·기능)는 생성 시 url 원문 fetch로 grounding.",
+  "tools": [
+    { "stage": "concept", "name": "Autodesk Forma", "url": "https://www.autodesk.com/products/forma/overview", "blurb": "초기 대지·매싱 단계 분석(일조·바람·소음)과 대안 비교. 구 Spacemaker." },
+    { "stage": "concept", "name": "TestFit", "url": "https://www.testfit.io/", "blurb": "대지 조건 넣으면 배치·주차·세대 매싱을 즉시 생성해 사업성/대안 검토." },
+    { "stage": "concept", "name": "Hypar", "url": "https://hypar.io/", "blurb": "규칙(스페이스 프로그램)에서 건물 매싱·평면을 생성, 함수형 조립." },
+    { "stage": "concept", "name": "Finch", "url": "https://www.finch3d.com/", "blurb": "실시간 생성형 평면·매싱, 그래프 기반 규칙으로 즉시 피드백." },
+    { "stage": "concept", "name": "Maket", "url": "https://www.maket.ai/", "blurb": "프롬프트/조건으로 주거 평면 대안과 조닝을 생성." },
+    { "stage": "concept", "name": "Snaptrude", "url": "https://www.snaptrude.com/", "blurb": "브라우저 BIM 모델러, 빠른 매싱·평면을 Revit/SketchUp과 연동." },
+
+    { "stage": "modeling", "name": "Food4Rhino", "url": "https://www.food4rhino.com/en", "blurb": "라이노·그래스호퍼 플러그인 마켓플레이스. 신규/업뎃 플러그인의 집결지." },
+    { "stage": "modeling", "name": "ShapeDiver", "url": "https://www.shapediver.com/", "blurb": "그래스호퍼 정의를 클라우드/웹앱으로 배포, 파라메트릭 컨피규레이터." },
+    { "stage": "modeling", "name": "Wallacei", "url": "https://www.wallacei.com/", "blurb": "그래스호퍼 진화 솔버(다목적 최적화)와 분석 시각화." },
+    { "stage": "modeling", "name": "Ladybug Tools", "url": "https://www.ladybug.tools/", "blurb": "그래스호퍼 환경분석(일조·에너지·CFD) 오픈소스 스위트." },
+    { "stage": "modeling", "name": "Pollination", "url": "https://www.pollination.solutions/", "blurb": "클라우드 환경시뮬레이션, Ladybug 워크플로우를 서버에서." },
+    { "stage": "modeling", "name": "Rhino 8 (SubD·ShrinkWrap)", "url": "https://www.rhino3d.com/8/", "blurb": "SubD·ShrinkWrap·QuadRemesh 등 컨셉 형상·메시 정리 신기능." },
+    { "stage": "modeling", "name": "Swapp / text-to-CAD 류", "url": "https://www.swapp.ai/", "blurb": "BIM/도면 자동화·검토. 실시설계 단계 자동화 시도." },
+
+    { "stage": "visual", "name": "Veras (EvolveLAB)", "url": "https://www.evolvelab.io/veras", "blurb": "라이노·스케치업·레빗 뷰포트를 형상 유지한 채 AI 렌더로. 컨셉 패널 배경에 강함." },
+    { "stage": "visual", "name": "D5 Render", "url": "https://www.d5render.com/", "blurb": "실시간 레이트레이싱 렌더러 + AI 텍스처/디테일/업스케일 기능." },
+    { "stage": "visual", "name": "Enscape", "url": "https://www.enscape3d.com/", "blurb": "라이노·레빗·스케치업 실시간 렌더·VR, AI 기능 추가 중." },
+    { "stage": "visual", "name": "Lumion", "url": "https://lumion.com/", "blurb": "건축 실시간 렌더, 풍부한 에셋·환경. 분위기 투시·영상." },
+    { "stage": "visual", "name": "Krea", "url": "https://www.krea.ai/", "blurb": "실시간 AI 이미지/렌더, 스케치·도형을 즉시 비주얼로(컨셉 빠른 시안)." },
+    { "stage": "visual", "name": "Magnific", "url": "https://magnific.ai/", "blurb": "AI 업스케일·디테일 강화. 저해상 렌더를 인쇄 패널 해상도로." },
+    { "stage": "visual", "name": "PromeAI", "url": "https://www.promeai.pro/", "blurb": "스케치→렌더, 리라이팅, 컨트롤 가능한 건축 비주얼 생성." },
+    { "stage": "visual", "name": "LookX", "url": "https://lookx.ai/", "blurb": "건축 특화 AI 렌더·컨셉 생성, 스타일·레퍼런스 제어." },
+    { "stage": "visual", "name": "Visoid", "url": "https://www.visoid.com/", "blurb": "건축 AI 렌더, 모델 뷰를 분위기 이미지로 빠르게." },
+    { "stage": "visual", "name": "ArkoAI", "url": "https://www.arko.ai/", "blurb": "스케치업/라이노 플러그인, 모델 뷰→AI 렌더." },
+    { "stage": "visual", "name": "Stable Diffusion + ControlNet", "url": "https://github.com/lllyasviel/ControlNet", "blurb": "형상(깊이·외곽선)을 고정한 채 재질·분위기만 AI로. 로컬 자유도 최고." },
+    { "stage": "visual", "name": "ComfyUI", "url": "https://www.comfy.org/", "blurb": "노드 기반 SD 워크플로우. 건축 렌더 파이프라인을 정밀 조립." },
+
+    { "stage": "panel", "name": "Magnific (패널 인쇄)", "url": "https://magnific.ai/", "blurb": "패널 출력 전 렌더·이미지 업스케일로 대형 인쇄 해상도 확보." },
+    { "stage": "panel", "name": "Vectorizer.ai", "url": "https://vectorizer.ai/", "blurb": "래스터 이미지를 벡터로. 다이어그램·로고를 일러용 벡터화." },
+    { "stage": "panel", "name": "Adobe Firefly / Generative", "url": "https://www.adobe.com/products/firefly.html", "blurb": "일러·포토샵 생성형 채우기·확장. 패널 배경·텍스처·요소 보정." },
+    { "stage": "panel", "name": "Gamma", "url": "https://gamma.app/", "blurb": "프롬프트로 제안서/덱 레이아웃 초안 생성. 보고·발표자료 골격." },
+    { "stage": "panel", "name": "Topaz Photo / Gigapixel", "url": "https://www.topazlabs.com/", "blurb": "이미지 노이즈·해상도 보정. 패널 사진·렌더 인쇄 품질." }
+  ]
+}

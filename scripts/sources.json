@@ -68,5 +68,26 @@
     "kind": "rss",
     "tag": "arxiv-gr",
     "note": "컴퓨터 그래픽스 최신. 건축 렌더/3D에 바로 써먹게 데모·코드까지 나온 것만 필터가 통과시킴. 순수 이론은 제외."
+  },
+  {
+    "name": "D5 Render 블로그 (렌더러 업데이트·AI 기능)",
+    "url": "https://www.d5render.com/feed",
+    "kind": "rss",
+    "tag": "d5",
+    "note": "D5 Render 제품 블로그 RSS. 신버전·AI 기능·실무 튜토리얼. 렌더 단계 1차 제품 소스."
+  },
+  {
+    "name": "EvolveLAB 블로그 (Veras 제작사)",
+    "url": "https://www.evolvelab.io/blog?format=rss",
+    "kind": "rss",
+    "tag": "evolvelab",
+    "note": "Veras·Helix 등 AI 렌더/BIM 자동화 제작사 블로그. 신기능·릴리스."
+  },
+  {
+    "name": "ShapeDiver 블로그 (GH 클라우드·컨피규레이터)",
+    "url": "https://www.shapediver.com/blog/rss.xml",
+    "kind": "rss",
+    "tag": "shapediver",
+    "note": "그래스호퍼 클라우드 배포·파라메트릭 컨피규레이터 제품 블로그."
   }
 ]

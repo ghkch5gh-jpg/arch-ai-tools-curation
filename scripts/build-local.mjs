@@ -140,12 +140,29 @@ for (const f of priorFiles) {
 
 const SPEC = await readFile("CURATION_SPEC.md", "utf8");
 
+// 도구 카탈로그 — 도감 프레임의 우물. 직전 2회차에서 다룬 url은 제외해 자연 로테이션.
+let CATALOG = [];
+try {
+  CATALOG = JSON.parse(await readFile("scripts/tools-catalog.json", "utf8")).tools || [];
+} catch (e) {
+  console.warn(`tools-catalog.json 로드 실패: ${e.message} — 카탈로그 없이 진행`);
+}
+const catalogFresh = CATALOG.filter((t) => !priorUrls.has(t.url));
+const catalogText = (catalogFresh.length ? catalogFresh : CATALOG)
+  .map((t) => `- [${t.stage}] ${t.name} — ${t.blurb} (${t.url})`)
+  .join("\n");
+
 const prompt = `**중요 — 이 요청은 *채팅 응답* 형식입니다. 도구·검색·파일시스템 사용 금지. 응답은 한 덩어리 JSON만. 첫 글자부터 \`{\` 로 시작. 인사·보고문 금지.**
 
-당신은 **한국 건축 현상설계 실무자를 위한 "AI 작업실" 큐레이터**입니다. 오늘(${dateStr}, ${dayOfWeek}요일) 회차를 작성하세요. 아래 명세(도메인·필터)를 엄격히 따르세요 — *연구 논문·코드 모델·일반 전망이 아니라*, 현상설계 결과물(컨셉·다이어그램·매싱·라이노/GH 모델·도면·렌더/CG·패널·보고서)을 **실제로 더 빨리·낫게 뽑게 해주는 도구·기법**만.
+당신은 **한국 건축 현상설계 실무자를 위한 "AI 작업실" 큐레이터**입니다. 오늘(${dateStr}, ${dayOfWeek}요일) 회차를 작성하세요. 이건 *오늘의 뉴스*가 아니라 **실무 도구 도감**입니다 — 아래 '도구 카탈로그'에서 *오늘 소개할 도구를 골라*, 현상설계 산출물에 실제로 어떻게 써먹는지 실무 각도로 풀어 쓰세요. 그날 수집 소스에 *새로 뜬* 도구·기법·업데이트가 있으면 우선 배치하고, 나머지는 카탈로그에서 채워 **매일 충실한 한 호**를 만듭니다. *연구 논문·코드 모델·일반 전망이 아니라*, 컨셉·다이어그램·매싱·라이노/GH·도면·렌더/CG·패널·보고서를 **더 빨리·낫게 뽑게 해주는 도구**만.
 
 # 명세
 ${SPEC}
+
+# 도구 카탈로그 (오늘 소개 후보 — 직전 회차에서 다룬 건 이미 빠짐. 여기서 골라 스포트라이트)
+${catalogText || "(카탈로그 비어있음 — 수집 소스로만)"}
+
+규칙: 카탈로그 도구를 소개할 땐 url을 그 도구 사이트로(위 괄호 url). 카탈로그에 없어도 수집 소스의 신규 도구면 추가. body·가격·기능은 *아는 범위에서 정확히*, 모르면 단정 말고 '확인 필요'로.
 
 # 말투 (이 톤을 그대로 따라하세요 — 레퍼런스 2개)
 
@@ -175,14 +192,14 @@ ${[...priorUrls].slice(0, 50).map((u) => `- ${u}`).join("\n") || "(없음)"}
 \`\`\`
 {
   "edition_note": "오늘 호 한 줄 소개 (~90자) — 어떤 단계/도구가 눈에 띄었는지",
-  "intro": "맨 처음 흐름 요약 — '오늘은' 으로 시작. 쉽고 자연스러운 한국어 3~5문장. 오늘 고른 도구들을 관통하는 흐름(렌더가 셌다/모델링 자동화가 떴다 등). **마른 날이면 솔직하게: 오늘은 새로 써먹을 만한 게 적어 N개만 골랐다고 명시.**",
-  "outro": "맺음말 — 오늘 흐름을 한 발 물러나 본 소회 2~3문장. 담백하게.",
+  "intro": "맨 처음 흐름 요약 — '오늘은' 으로 시작. 쉽고 자연스러운 한국어 3~5문장. 오늘 다룬 도구들을 관통하는 묶음(렌더 도구를 모았다/모델링 자동화 위주 등). 그날 신규 업데이트가 있으면 그걸 앞세워 언급.",
+  "outro": "맺음말 — 오늘 묶음을 한 발 물러나 본 소회 2~3문장. 담백하게.",
   "items": [
     {
       "section": "pick | concept | modeling | visual | panel | technique",
       "title": "도구·기법명 — 한국어 보조설명 곁들여 (예: 'Veras — 라이노 화면을 AI 렌더로')",
-      "url": "원본 링크 (수집된 것 중에서만)",
-      "source": "출처태그 (수집 소스의 tag 값): mcneel | reddit-rhino | reddit-gh | reddit-arch | reddit-sd | parametricmonkey | archdaily | hn-render | hn-cad | arxiv-gr",
+      "url": "도구 사이트 url(카탈로그) 또는 수집 소스의 원본 링크",
+      "source": "출처태그. 카탈로그 도구면 \\"catalog\\". 수집 소스면 그 tag: mcneel | reddit-rhino | reddit-gh | reddit-arch | reddit-sd | parametricmonkey | archdaily | hn-render | hn-cad | arxiv-gr | d5 | evolvelab | shapediver",
       "score": 1-10 정수 (실무 투입 가능성 — 명세 3절 기준),
       "body": "본문 정확히 3~4문장 — 무슨 도구·기법이고 현상설계 어느 단계에 닿는지, 비슷한 도구에 빗대 한 줄",
       "points": ["가격·플랫폼 (예: 구독제 · Rhino/SketchUp 플러그인)", "입력→출력 (예: 매스 모델 → 분위기 렌더)", "(선택) 한계·주의 (예: 정밀 렌더는 아직)"],
@@ -195,9 +212,9 @@ ${[...priorUrls].slice(0, 50).map((u) => `- ${u}`).join("\n") || "(없음)"}
 \`\`\`
 
 분량·분류 규칙:
-- section "pick": **오늘 가장 눈에 띈 1~3개** (단계 무관, 실무 투입 톱). 나머지 섹션과 중복 금지.
-- "concept"(컨셉·다이어그램) / "modeling"(라이노·GH·CAD) / "visual"(렌더·CG·이미지) / "panel"(패널·보고서) / "technique"(따라 할 워크플로우). 각 0~5개, 해당 없으면 비움.
-- 전체 **4~12개**. **오늘 진짜 써먹을 게 적으면 4개 미만도 OK — 억지로 채우지 말 것.** 연구 논문·코드 모델만 있는 것, 일반 전망·벤더 뉴스, 시공/부동산/BIM운영, 코딩 일반 도구는 제외. URL은 반드시 위 소스에 등장한 것. 지어내기 금지.`;
+- section "pick": **오늘 가장 주목할 1~3개** (단계 무관, 실무 투입 톱 — 신규 업데이트가 있으면 거기 우선). 나머지 섹션과 중복 금지.
+- "concept"(컨셉·다이어그램) / "modeling"(라이노·GH·CAD) / "visual"(렌더·CG·이미지) / "panel"(패널·보고서) / "technique"(따라 할 워크플로우). 단계 골고루.
+- 전체 **7~10개로 충실하게.** 도감이라 카탈로그에서 채워 매일 풍부해야 함 — *마른 날 없음*. 단 지어내기·과장은 금지(모르는 가격·기능은 '확인 필요'). 같은 도구를 직전 회차와 중복하지 말 것(카탈로그를 로테이션). 연구 논문·코드 모델만, 일반 전망·벤더 실적뉴스, 시공/부동산/BIM운영, 코딩 일반 도구는 제외.`;
 
 console.log(`Prompt: ${(Buffer.byteLength(prompt, "utf8") / 1024).toFixed(1)} KB`);
 if (DRY_RUN) {
@@ -301,6 +318,7 @@ const SRC_LABEL = {
   "reddit-arch": "r/architecture", "reddit-sd": "r/StableDiffusion",
   parametricmonkey: "Parametric Monkey", archdaily: "ArchDaily",
   "hn-render": "Hacker News", "hn-cad": "Hacker News", "arxiv-gr": "arXiv",
+  catalog: "도감", d5: "D5 Render", evolvelab: "EvolveLAB", shapediver: "ShapeDiver",
 };
 const isCmd = (s) => /(^\$|pip install|npm |npx |git clone|brew |docker|curl |uv |cargo |huggingface-cli|conda )/i.test(String(s || "").trim());
 const HANGUL = /[가-힣]/;
