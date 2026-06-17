@@ -217,10 +217,11 @@ console.log(`  원문 확보: ${groundedCount}/${chainTools.filter((c) => !c.own
 
 // 막힌·로그인·JS 소스(kind:"crawl")는 crawl.py(실제 크롬)로 우회. best-effort:
 // 크롬/파이썬 없거나 막히면 조용히 "" 반환(작업은 절대 안 깨짐). 하드 타임아웃으로 행 방지.
-function crawlFetch(url, { timeoutMs = 70000 } = {}) {
+function crawlFetch(url, { timeoutMs = 75000 } = {}) {
   const crawlPath = "../../_tools/crawl.py"; // work/_inspect/arch-ai-tools-curation → work/_tools/crawl.py
-  const base = [crawlPath, url, "--headless", "--mode", "text", "--sleep", "3", "--scroll", "1"];
-  const launchers = [["python", base], ["py", ["-3.14", ...base]], ["py", base]];
+  const base = [crawlPath, url, "--headless", "--mode", "html", "--sleep", "3", "--scroll", "1"];
+  // selenium 은 py -3.14 에만 깔려 있음 → 그게 1순위. 빈 출력(예: python에 selenium 없음)이면 다음 런처로.
+  const launchers = [["py", ["-3.14", ...base]], ["python", base], ["py", base]];
   return new Promise((resolve) => {
     let i = 0;
     const next = () => {
@@ -231,8 +232,8 @@ function crawlFetch(url, { timeoutMs = 70000 } = {}) {
       const done = (v) => { if (!settled) { settled = true; clearTimeout(t); resolve(v); } };
       const t = setTimeout(() => { try { child.kill(); } catch {} done(out); }, timeoutMs);
       child.stdout?.on("data", (d) => { out += d.toString(); });
-      child.on("error", () => { if (!settled) { clearTimeout(t); next(); } }); // 런처 없음 → 다음
-      child.on("close", () => done(out));
+      child.on("error", () => { if (!settled) { clearTimeout(t); next(); } });   // 런처 없음(ENOENT) → 다음
+      child.on("close", () => { if (settled) return; if (out.trim()) done(out); else { clearTimeout(t); next(); } }); // 빈 출력 → 다음 런처
     };
     next();
   });
@@ -256,8 +257,11 @@ async function lightCollect() {
       const kw = s.general ? ARCH_KW : null;
       let text = "";
       if (s.kind === "crawl") {
-        const raw = await crawlFetch(url);
-        text = (kw ? raw.split("\n").filter((l) => kw.test(l)).join("\n") : raw).slice(0, 1600);
+        const raw = await crawlFetch(url); // --mode html (page_source)
+        let t;
+        if (/<item[\s>]|<entry[\s>]/i.test(raw)) t = parseFeed(raw, 8, kw);   // 피드면 파싱
+        else { const st = stripHtml(raw, url); t = kw ? st.split("\n").filter((l) => kw.test(l)).join("\n") : st; } // 페이지면 본문
+        text = t.slice(0, 1600);
       } else if (s.kind === "json") {
         const res = await fetchWithRetry(url, { attempts: 2, baseDelayMs: 500 });
         text = JSON.stringify(await res.json()).slice(0, 1600);
