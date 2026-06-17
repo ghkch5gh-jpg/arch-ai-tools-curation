@@ -4,55 +4,188 @@
     "url": "https://discourse.mcneel.com/latest.json?order=created",
     "kind": "json",
     "tag": "mcneel",
-    "note": "Rhino/Grasshopper 공식 포럼 최신글 JSON. 신규 플러그인·스크립트·실사용 토론. 도구 발견 1순위."
+    "collect": true,
+    "note": "Rhino/Grasshopper 공식 포럼 최신글. 신규 플러그인·스크립트·실사용 토론. 도구 발견 1순위."
+  },
+  {
+    "name": "Food4Rhino RSS (라이노·GH 신규/업뎃 플러그인)",
+    "url": "https://www.food4rhino.com/en/rss.xml",
+    "kind": "rss",
+    "tag": "food4rhino",
+    "collect": true,
+    "note": "라이노·GH 플러그인 마켓 신규/업뎃 1순위. 옛 403은 봇 UA 탓 → 브라우저 UA로 200."
+  },
+  {
+    "name": "Parametric Architecture (파라메트릭·AI 건축 기사)",
+    "url": "https://parametric-architecture.com/feed/",
+    "kind": "rss",
+    "tag": "parametric-arch",
+    "general": true,
+    "collect": true,
+    "note": "파라메트릭·컴퓨테이셔널·AI 건축 + 툴 기사. 하루 여러 건(고볼륨 → 키워드 필터)."
+  },
+  {
+    "name": "Parametric Monkey (GH 튜토리얼·도구)",
+    "url": "https://parametricmonkey.com/feed/",
+    "kind": "rss",
+    "tag": "parametricmonkey",
+    "collect": true,
+    "note": "그래스호퍼·컴퓨테이셔널 실무 블로그. 도구·워크플로우 위주."
+  },
+  {
+    "name": "AEC Magazine (AEC 소프트웨어·AI 뉴스/리뷰)",
+    "url": "https://aecmag.com/feed/",
+    "kind": "rss",
+    "tag": "aec-mag",
+    "collect": true,
+    "note": "AEC 소프트웨어/AI 뉴스·리뷰(Neural CAD 등). 실무 판단에 좋은 고신호."
+  },
+  {
+    "name": "Enscape / Chaos 블로그 (렌더 제품 업뎃)",
+    "url": "https://blog.chaos.com/rss.xml",
+    "kind": "rss",
+    "tag": "enscape",
+    "collect": true,
+    "note": "Enscape·V-Ray·Corona 제품 업데이트 + archviz AI 워크플로. blog.enscape3d.com 이 여기로 리다이렉트."
+  },
+  {
+    "name": "D5 Render 블로그 (렌더러 업뎃·AI 기능)",
+    "url": "https://www.d5render.com/feed",
+    "kind": "rss",
+    "tag": "d5",
+    "collect": false,
+    "note": "D5 블로그 RSS는 현재 항목 0(피드 비거나 막힘) — D5 동향은 yt-d5(유튜브)로 커버. 살아나면 collect 복구."
+  },
+  {
+    "name": "Krea 블로그 (실시간 AI 이미지·렌더)",
+    "url": "https://www.krea.ai/blog/feed/atom.xml",
+    "kind": "rss",
+    "tag": "krea",
+    "collect": true,
+    "note": "Krea 출시·연구·튜토리얼(Generative Sliders 등). 컨셉 비주얼 단계 도구."
+  },
+  {
+    "name": "Autodesk Forma 블로그 (초기 대지·매싱 분석)",
+    "url": "https://blogs.autodesk.com/forma/feed/",
+    "kind": "rss",
+    "tag": "autodesk-forma",
+    "collect": true,
+    "note": "Forma 사이트분석·데이터기반 설계 공식 'what's new'."
+  },
+  {
+    "name": "EvolveLAB 블로그 (Veras 제작사)",
+    "url": "https://www.evolvelab.io/blog?format=rss",
+    "kind": "rss",
+    "tag": "evolvelab",
+    "collect": false,
+    "note": "Veras 제작사. 단 Chaos 인수 후 블로그 휴면(최신 2025-03, 피드 항목 0). Veras 동향은 enscape/yt-enscape로 커버."
+  },
+  {
+    "name": "ShapeDiver 블로그 (GH 클라우드·컨피규레이터)",
+    "url": "https://www.shapediver.com/blog/rss.xml",
+    "kind": "rss",
+    "tag": "shapediver",
+    "collect": false,
+    "note": "GH 클라우드 컨피규레이터. 단 블로그 RSS 현재 항목 0 — GH 동향은 food4rhino/mcneel로 커버."
+  },
+  {
+    "name": "ComfyUI 릴리스 (로컬 SD 파이프라인 체인지로그)",
+    "url": "https://github.com/comfyanonymous/ComfyUI/releases.atom",
+    "kind": "rss",
+    "tag": "comfyui-rel",
+    "collect": true,
+    "note": "ComfyUI 버전 릴리스 + 신규 모델 지원. 로컬 렌더 파이프라인 추적."
+  },
+  {
+    "name": "D5 Render (YouTube — AI 워크플로 영상)",
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCMBBExNMw9ZsTZ1DxrTpvEA",
+    "kind": "rss",
+    "tag": "yt-d5",
+    "collect": true,
+    "note": "D5 공식 채널. AI 스타일전송·archviz 워크플로 영상 = 레시피 연료."
+  },
+  {
+    "name": "Chaos Enscape (YouTube — 제품·워크플로)",
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCI80b5N14pkKmlLvnB1T8vw",
+    "kind": "rss",
+    "tag": "yt-enscape",
+    "collect": true,
+    "note": "Enscape 공식 채널. 제품 업데이트·Chaos Cloud 워크플로."
+  },
+  {
+    "name": "Show It Better (YouTube — archviz/AI 표현 튜토)",
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC_eRv_Rzr671BaKFtpYSi4A",
+    "kind": "rss",
+    "tag": "yt-archviz",
+    "collect": true,
+    "note": "archviz/AI 표현·일러·D5 워크플로 튜토리얼(200k+). 레시피 연료 고신호."
+  },
+  {
+    "name": "Product Hunt (신규 AI/디자인 도구 런칭)",
+    "url": "https://www.producthunt.com/feed",
+    "kind": "rss",
+    "tag": "producthunt",
+    "general": true,
+    "collect": true,
+    "note": "신규 제품 런칭 데일리. AI/디자인 도구 신상 제일 빨리 뜸(고볼륨 → 키워드 필터)."
+  },
+  {
+    "name": "Dezeen (건축·디자인 — AI/툴 기사만 필터)",
+    "url": "https://www.dezeen.com/feed/",
+    "kind": "rss",
+    "tag": "dezeen",
+    "general": true,
+    "collect": false,
+    "note": "고볼륨 일반 피드. AI/렌더/툴 키워드 필터 통과분만. 로테이션 보조."
+  },
+  {
+    "name": "designboom (건축·디자인 — AI/툴 기사만 필터)",
+    "url": "https://www.designboom.com/feed/",
+    "kind": "rss",
+    "tag": "designboom",
+    "general": true,
+    "collect": false,
+    "note": "고볼륨 일반 피드. AI/렌더/툴 키워드 필터 통과분만. 로테이션 보조."
+  },
+  {
+    "name": "ArchDaily 최신 (AI 도구·표현 기사만 필터)",
+    "url": "https://www.archdaily.com/feed",
+    "kind": "rss",
+    "tag": "archdaily",
+    "general": true,
+    "collect": false,
+    "note": "건축 일반 RSS. AI 도구·렌더·표현·워크플로우 기사만 필터가 골라냄."
   },
   {
     "name": "Reddit r/rhino (이번 주 인기)",
     "url": "https://www.reddit.com/r/rhino/top.rss?t=week&limit=25",
     "kind": "rss",
     "tag": "reddit-rhino",
-    "note": "라이노 실무자 커뮤니티. 플러그인·AI 워크플로우·렌더 후기."
+    "collect": false,
+    "note": "라이노 실무자. 플러그인·AI 워크플로·렌더 후기. 주간이라 429 위험 낮음."
   },
   {
     "name": "Reddit r/grasshopper3d (이번 주 인기)",
     "url": "https://www.reddit.com/r/grasshopper3d/top.rss?t=week&limit=25",
     "kind": "rss",
     "tag": "reddit-gh",
-    "note": "그래스호퍼 파라메트릭 커뮤니티. ML 폼파인딩·정의·플러그인."
-  },
-  {
-    "name": "Reddit r/architecture (이번 주 인기)",
-    "url": "https://www.reddit.com/r/architecture/top.rss?t=week&limit=25",
-    "kind": "rss",
-    "tag": "reddit-arch",
-    "note": "건축 일반. AI 도구·렌더·표현 관련 글만 필터가 골라냄."
+    "collect": false,
+    "note": "그래스호퍼 파라메트릭. ML 폼파인딩·정의·플러그인."
   },
   {
     "name": "Reddit r/StableDiffusion 건축 검색 (이번 주)",
     "url": "https://www.reddit.com/r/StableDiffusion/search.rss?q=architecture+OR+architectural+OR+interior&restrict_sr=1&sort=top&t=week",
     "kind": "rss",
     "tag": "reddit-sd",
-    "note": "건축 렌더/ControlNet/LoRA 워크플로우. 비주얼 단계 핵심 소스."
-  },
-  {
-    "name": "Parametric Monkey (파라메트릭·GH 튜토리얼)",
-    "url": "https://parametricmonkey.com/feed/",
-    "kind": "rss",
-    "tag": "parametricmonkey",
-    "note": "그래스호퍼·컴퓨테이셔널 디자인 실무 블로그 RSS. 도구·워크플로우 위주."
-  },
-  {
-    "name": "ArchDaily 최신 (RSS — AI 도구 기사만 필터)",
-    "url": "https://www.archdaily.com/feed",
-    "kind": "rss",
-    "tag": "archdaily",
-    "note": "건축 일반 RSS. AI 도구·렌더·표현·워크플로우 기사만 필터가 골라냄. 일반 프로젝트 소개는 제외."
+    "collect": false,
+    "note": "건축 렌더/ControlNet/LoRA 워크플로우. 비주얼 단계 소스."
   },
   {
     "name": "Hacker News — architecture render (이번 주)",
     "url": "https://hn.algolia.com/api/v1/search_by_date?query=architecture%20render&tags=story&numericFilters=created_at_i%3E__SINCE_TS__&hitsPerPage=20",
     "kind": "json",
     "tag": "hn-render",
+    "collect": false,
     "note": "HN에서 건축 렌더/시각화 도구 신호. 최근 것만(__SINCE_TS__)."
   },
   {
@@ -60,6 +193,7 @@
     "url": "https://hn.algolia.com/api/v1/search_by_date?query=grasshopper%20OR%20%22text%20to%20cad%22%20OR%20%22sketch%20to%203d%22&tags=story&numericFilters=created_at_i%3E__SINCE_TS__&hitsPerPage=20",
     "kind": "json",
     "tag": "hn-cad",
+    "collect": false,
     "note": "HN에서 모델링·CAD 자동화 도구 신호. 최근 것만."
   },
   {
@@ -67,27 +201,25 @@
     "url": "http://export.arxiv.org/rss/cs.GR",
     "kind": "rss",
     "tag": "arxiv-gr",
-    "note": "컴퓨터 그래픽스 최신. 건축 렌더/3D에 바로 써먹게 데모·코드까지 나온 것만 필터가 통과시킴. 순수 이론은 제외."
+    "collect": false,
+    "note": "컴퓨터 그래픽스 최신. 건축 렌더/3D에 바로 써먹게 데모/코드까지 나온 것만."
   },
   {
-    "name": "D5 Render 블로그 (렌더러 업데이트·AI 기능)",
-    "url": "https://www.d5render.com/feed",
-    "kind": "rss",
-    "tag": "d5",
-    "note": "D5 Render 제품 블로그 RSS. 신버전·AI 기능·실무 튜토리얼. 렌더 단계 1차 제품 소스."
+    "name": "Archinect 뉴스 (건축 일반 — Cloudflare, 크롤 우회)",
+    "url": "https://archinect.com/feed/1/news",
+    "kind": "crawl",
+    "tag": "archinect",
+    "general": true,
+    "collect": false,
+    "note": "Cloudflare 챌린지로 plain fetch 막힘 → crawl.py(실제 크롬)로 우회. best-effort(크롬 없으면 스킵)."
   },
   {
-    "name": "EvolveLAB 블로그 (Veras 제작사)",
-    "url": "https://www.evolvelab.io/blog?format=rss",
-    "kind": "rss",
-    "tag": "evolvelab",
-    "note": "Veras·Helix 등 AI 렌더/BIM 자동화 제작사 블로그. 신기능·릴리스."
-  },
-  {
-    "name": "ShapeDiver 블로그 (GH 클라우드·컨피규레이터)",
-    "url": "https://www.shapediver.com/blog/rss.xml",
-    "kind": "rss",
-    "tag": "shapediver",
-    "note": "그래스호퍼 클라우드 배포·파라메트릭 컨피규레이터 제품 블로그."
+    "name": "네이버 블로그 검색 (건축 AI 렌더 — 한국 동향, 크롤 우회)",
+    "url": "https://section.blog.naver.com/Search/Post.naver?pageNo=1&rangeType=ALL&orderBy=recentdate&keyword=건축%20AI%20렌더",
+    "kind": "crawl",
+    "tag": "naver-arch-ai",
+    "general": true,
+    "collect": false,
+    "note": "한국 실무자 AI 렌더/도구 후기 동향. JS 페이지라 crawl.py(--scroll)로. best-effort·저ROI(대부분 영어권 번역). 켜두면 한국 맥락만 가끔."
   }
 ]

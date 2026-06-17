@@ -30,8 +30,11 @@ const slug = `${dateStr}_${dayOfWeek}`;
 // ===== fetch/strip/feed 헬퍼 (build-local 동일 — verbatim) =====
 async function fetchWithRetry(url, { headers = {}, attempts = 3, baseDelayMs = 800 } = {}) {
   const mergedHeaders = {
-    "User-Agent": "Mozilla/5.0 (compatible; ArchAIToolsBot/1.0; +https://www.dangsun.kr)",
-    "Accept-Language": "ko-KR,ko;q=0.9,en;q=0.8",
+    // 브라우저 UA — 봇 UA는 Food4Rhino·D5 등에서 403. 일반 RSS는 사람처럼 접근해야 200.
+    "User-Agent":
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml, application/json;q=0.9, */*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9,ko;q=0.8",
     ...headers,
   };
   let lastErr;
@@ -88,23 +91,27 @@ function stripHtml(html, baseUrl) {
     .trim();
 }
 
-// RSS/Atom 공통 파서 (build-local 동일)
-function parseFeed(xml, max = 25) {
+// RSS/Atom 공통 파서 (build-local 동일 + keywordRe 항목 필터: general 고볼륨 피드용)
+function parseFeed(xml, max = 25, keywordRe = null) {
   const clean = (s) => String(s || "").replace(/<!\[CDATA\[|\]\]>/g, "").replace(/<[^>]+>/g, "").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\s+/g, " ").trim();
-  const blocks = xml.split(/<entry[\s>]|<item[\s>]/i).slice(1, max + 1);
-  return blocks
-    .map((b) => {
-      const title = clean((b.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1]);
-      let link = (b.match(/<link[^>]*href=["']([^"']+)["']/i) || [])[1];
-      if (!link) link = clean((b.match(/<link[^>]*>([\s\S]*?)<\/link>/i) || [])[1]);
-      const date = ((b.match(/<(updated|pubDate|published|dc:date)[^>]*>([\s\S]*?)<\/\1>/i) || [])[2] || "").slice(0, 10);
-      const desc = clean((b.match(/<(description|summary)[^>]*>([\s\S]*?)<\/\1>/i) || [])[2] || "").slice(0, 200);
-      if (!title) return "";
-      return `- ${title} (${(link || "").trim()})${date ? ` · ${date}` : ""}${desc ? `\n  ${desc}` : ""}`;
-    })
-    .filter(Boolean)
-    .join("\n");
+  const blocks = xml.split(/<entry[\s>]|<item[\s>]/i).slice(1, keywordRe ? 40 : max + 1);
+  const items = [];
+  for (const b of blocks) {
+    const title = clean((b.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1]);
+    let link = (b.match(/<link[^>]*href=["']([^"']+)["']/i) || [])[1];
+    if (!link) link = clean((b.match(/<link[^>]*>([\s\S]*?)<\/link>/i) || [])[1]);
+    const date = ((b.match(/<(updated|pubDate|published|dc:date)[^>]*>([\s\S]*?)<\/\1>/i) || [])[2] || "").slice(0, 10);
+    const desc = clean((b.match(/<(description|summary)[^>]*>([\s\S]*?)<\/\1>/i) || [])[2] || "").slice(0, 200);
+    if (!title) continue;
+    if (keywordRe && !keywordRe.test(`${title} ${desc} ${link}`)) continue; // general 피드는 관련 항목만
+    items.push(`- ${title} (${(link || "").trim()})${date ? ` · ${date}` : ""}${desc ? `\n  ${desc}` : ""}`);
+    if (items.length >= max) break;
+  }
+  return items.join("\n");
 }
+
+// general(고볼륨 일반) 피드에서 현상설계 AI/렌더/도구 관련 항목만 통과시키는 키워드.
+const ARCH_KW = /\b(AI|render|rendering|render(?:er|ing)?|diffusion|ControlNet|generative|gen-?AI|Rhino|Grasshopper|parametric|computational|BIM|Revit|SketchUp|3D|text-to|image-to|sketch-to|upscal|ComfyUI|Stable Diffusion|Midjourney|LoRA|Veras|Enscape|Lumion|D5|Twinmotion|Krea|Magnific|Forma|plugin|workflow|visuali[sz]|neural|NeRF|gaussian)\b|렌더|렌더링|라이노|그래스호퍼|파라메트릭|디퓨전|생성형|업스케일|건축\s*AI|매싱/i;
 
 // ===== 입력 로드 =====
 const recipesCatalog = JSON.parse(await readFile("scripts/recipes-catalog.json", "utf8"));
@@ -208,23 +215,60 @@ const chainTools = await Promise.all(chain.map(groundChainTool));
 const groundedCount = chainTools.filter((c) => c.source).length;
 console.log(`  원문 확보: ${groundedCount}/${chainTools.filter((c) => !c.own).length} (외부 도구 기준)`);
 
-// ===== OPTIONAL: 이번 주 새 소식 (가벼운 수집 — 소수 소스, 짧게) =====
-// 실패하거나 빈손이어도 OK — 그 섹션은 정직하게 '잠잠'으로 처리.
+// 막힌·로그인·JS 소스(kind:"crawl")는 crawl.py(실제 크롬)로 우회. best-effort:
+// 크롬/파이썬 없거나 막히면 조용히 "" 반환(작업은 절대 안 깨짐). 하드 타임아웃으로 행 방지.
+function crawlFetch(url, { timeoutMs = 70000 } = {}) {
+  const crawlPath = "../../_tools/crawl.py"; // work/_inspect/arch-ai-tools-curation → work/_tools/crawl.py
+  const base = [crawlPath, url, "--headless", "--mode", "text", "--sleep", "3", "--scroll", "1"];
+  const launchers = [["python", base], ["py", ["-3.14", ...base]], ["py", base]];
+  return new Promise((resolve) => {
+    let i = 0;
+    const next = () => {
+      if (i >= launchers.length) return resolve("");
+      const [cmd, args] = launchers[i++];
+      let out = "", settled = false;
+      const child = spawn(cmd, args, { cwd: process.cwd() });
+      const done = (v) => { if (!settled) { settled = true; clearTimeout(t); resolve(v); } };
+      const t = setTimeout(() => { try { child.kill(); } catch {} done(out); }, timeoutMs);
+      child.stdout?.on("data", (d) => { out += d.toString(); });
+      child.on("error", () => { if (!settled) { clearTimeout(t); next(); } }); // 런처 없음 → 다음
+      child.on("close", () => done(out));
+    };
+    next();
+  });
+}
+
+// ===== OPTIONAL: 이번 주 새 소식 (가벼운 수집) =====
+// 고신호 core(collect:true)는 매주 + collect:false 보조 2개 + crawl 1개를 주차로 로테이션.
+// 실패/빈손이어도 OK — 그 섹션은 정직하게 '잠잠'으로 처리. general 피드는 ARCH_KW로 항목 필터.
+const weekIdx = Math.floor(now.getTime() / (7 * 864e5));
 async function lightCollect() {
   if (!SOURCES.length) return [];
-  // 신상 신호가 가장 빠른 소수만(제품 블로그·McNeel) 가볍게.
-  const pickTags = new Set(["mcneel", "d5", "evolvelab", "shapediver"]);
-  const picked = SOURCES.filter((s) => pickTags.has(s.tag)).slice(0, 4);
+  const rot = (arr, n) => arr.length ? Array.from({ length: Math.min(n, arr.length) }, (_, k) => arr[(weekIdx + k) % arr.length]) : [];
+  const core = SOURCES.filter((s) => s.collect && s.kind !== "crawl");        // 매주
+  const extra = rot(SOURCES.filter((s) => !s.collect && s.kind !== "crawl"), 2); // 주차 로테이션
+  const crawl = rot(SOURCES.filter((s) => s.kind === "crawl"), 1);             // 주당 최대 1 (best-effort)
+  const picked = [...core, ...extra, ...crawl];
   const out = [];
   for (const s of picked) {
     try {
-      let url = s.url.replaceAll("__SINCE__", sinceIso).replaceAll("__SINCE_TS__", String(sinceTs));
-      const res = await fetchWithRetry(url, { attempts: 2, baseDelayMs: 500 });
+      const url = s.url.replaceAll("__SINCE__", sinceIso).replaceAll("__SINCE_TS__", String(sinceTs));
+      const kw = s.general ? ARCH_KW : null;
       let text = "";
-      if (s.kind === "rss") text = parseFeed(await res.text(), 6).slice(0, 1600);
-      else if (s.kind === "json") text = JSON.stringify(await res.json()).slice(0, 1600);
-      else text = stripHtml(await res.text(), url).slice(0, 1600);
-      if (text) out.push({ name: s.name, tag: s.tag, text });
+      if (s.kind === "crawl") {
+        const raw = await crawlFetch(url);
+        text = (kw ? raw.split("\n").filter((l) => kw.test(l)).join("\n") : raw).slice(0, 1600);
+      } else if (s.kind === "json") {
+        const res = await fetchWithRetry(url, { attempts: 2, baseDelayMs: 500 });
+        text = JSON.stringify(await res.json()).slice(0, 1600);
+      } else if (s.kind === "html") {
+        const res = await fetchWithRetry(url, { attempts: 2, baseDelayMs: 500 });
+        text = stripHtml(await res.text(), url).slice(0, 1600);
+      } else { // rss/atom
+        const res = await fetchWithRetry(url, { attempts: 2, baseDelayMs: 500 });
+        text = parseFeed(await res.text(), 6, kw).slice(0, 1600);
+      }
+      if (text && text.trim()) out.push({ name: s.name, tag: s.tag, text });
     } catch (e) {
       // 조용히 스킵 — 새 소식은 어디까지나 선택
     }
@@ -233,7 +277,7 @@ async function lightCollect() {
 }
 let news = [];
 try { news = await lightCollect(); } catch { news = []; }
-console.log(`이번 주 새 소식 수집: ${news.length}개 소스 확보`);
+console.log(`이번 주 새 소식 수집: ${news.length}개 소스 확보 (core+로테이션)`);
 
 // ===== claude -p 프롬프트 조립 =====
 const chainArrow = chainTools.map((c) => c.name).join(" → ");
