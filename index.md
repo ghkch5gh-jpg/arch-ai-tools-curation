@@ -1,44 +1,582 @@
 ---
 title: AI Design Stack
-eyebrow: STUDIO · AI TOOLS DAILY
+eyebrow: "STUDIO · 현상설계 실무 AI 도구 도감"
 hero_title: "AI <em>Design Stack</em>"
-description: 매일, 현상설계 결과물(컨셉·다이어그램·매싱·라이노/GH·렌더·패널·보고서)을 실제로 더 빨리·낫게 뽑게 해주는 AI 도구·기법만 골라 정리합니다. 데모는 데모라고, 써먹히면 써먹힌다고.
+description: 현상설계 결과물(컨셉·다이어그램·매싱·라이노/GH·렌더·패널·보고서)을 실제로 더 빨리·낫게 뽑게 해주는 AI 도구만 단계별로 모은 실무 도감. 가격·플랫폼·성숙도까지, 데모는 데모라고. 매주 실전 레시피 한 편.
 stats:
-  - num: "매일"
-    lbl: "Daily"
-  - num: "13"
-    lbl: "Sources"
-  - num: "6"
-    lbl: "Stages"
-  - num: "13"
-    lbl: "회차"
+  - num: "42"
+    lbl: "도구"
+  - num: "4"
+    lbl: "단계"
+  - num: "23"
+    lbl: "원문대조"
+  - num: "주1"
+    lbl: "레시피"
 ---
 
-## 회차 목록
-
-- [2026-06-16 (화) — 오늘은 렌더 도구를 한 축으로 모았습니다 — 뷰포트 AI 렌더(ArkoAI·Veras)부터 실시간 렌더러(D5·Lumion)까지, 컨셉부터 패널까지의 비주얼 라인.](2026-06-16_화.html)
-- [2026-06-15 (월) — 오늘은 신상 소식이 잠잠해 카탈로그에서 렌더·매싱·환경분석 도구를 단계별로 한 바퀴 돌렸습니다.](2026-06-15_월.html)
-- [2026-06-14 (일) — 오늘은 카탈로그 우물에서 컨셉·매싱 자동 생성과 GH 최적화·환경분석 축을 끌어올렸습니다 — 초기 검토를 자동으로 돌리는 도구 위주.](2026-06-14_일.html)
-- [2026-06-13 (토) — 오늘은 컨셉 이미지와 3D 에셋 생성 쪽을 모았습니다 — Midjourney·Rodin부터 라이노 신기능·로컬 렌더 파이프라인까지.](2026-06-13_토.html)
-- [2026-06-12 (금) — 오늘은 무료로 시작하는 렌더·업스케일을 앞세우고, 초기 배치 검토와 컨텍스트 3D까지 묶었습니다.](2026-06-12_금.html)
-- [2026-06-11 (목) — 오늘은 렌더 엔진(D5·Veras)부터 초기 매싱(Forma·TestFit), GH 마켓·기법까지 파이프라인 전 구간을 한 바퀴 돌렸습니다.](2026-06-11_목.html)
-- [2026-06-10 (수) — 오늘은 렌더·컨셉 도구를 한 줄로 모으고, 새로 풀린 Ideogram 4.0과 Make2D 선 자동분류 툴을 얹었습니다.](2026-06-10_수.html)
-- [2026-06-09 (화) — 오늘은 컨셉 생성기(Hypar·Finch)부터 환경분석·렌더까지, 카탈로그 도구를 단계별로 한 바퀴 돌았습니다.](2026-06-09_화.html)
-- [2026-06-08 (월) — 오늘은 렌더·이미지 도구를 중심으로 모았어요. 신상은 오픈소스로 풀린 Ideogram 4.0, 우물은 컨셉·렌더·패널 단계의 검증된 도구들.](2026-06-08_월.html)
-- [2026-06-07 (일) — 오늘은 도면·드로잉 자동화가 눈에 띄어 pick으로 올렸고, 모델링·렌더·패널 보정 도구를 카탈로그에서 고루 채웠습니다.](2026-06-07_일.html)
-- [2026-06-06 (토) — 오늘은 모델 화면을 바로 AI 렌더로 바꾸는 ArkoAI를 필두로, 컨셉 매싱 자동화(Finch·Hypar)부터 GH 최적화·환경분석, 패널 벡터화까지 단계별로 채웠습니다.](2026-06-06_토.html)
-- [2026-06-05 (금) — 오늘은 렌더·CG 축을 중심으로, 초기 매싱(Forma·TestFit)부터 패널 직전 업스케일까지 한 줄로 꿰는 호입니다.](2026-06-05_금.html)
-- [2026-06-04 (목) — 마른 날입니다. 새로 써먹을 도구는 적어 모델링·도면 자동화 1개 중심으로 3개만 골랐어요.](2026-06-04_목.html)
-{:.episode-list}
-
-*매일 새 회차가 자동으로 추가됩니다.*
-
-## 각 회차 구성
-
-- **오늘 눈에 띈 것** — 그날 실무 투입 톱 1~3
-- **컨셉·다이어그램 / 모델링(라이노·GH·CAD) / 렌더·CG·이미지 / 패널·보고서 / 기법·워크플로우**
-- 항목마다 *한줄평 · 써먹기 · 성숙도* + 실무 투입 가능성 점수
-
-## 이 큐레이션은
-
-매일 **McNeel · Reddit(r/rhino·r/grasshopper3d·r/architecture·r/StableDiffusion) · Parametric Monkey · ArchDaily · Hacker News · arXiv** 를 자동으로 돌며, 현상설계 산출물에 실제로 써먹을 수 있는 AI 도구·기법만 골라 정리합니다. 연구 논문·코드 모델만 있는 것(→ AI in Architecture), 일반 전망·벤더 뉴스는 제외합니다. Claude Code 구독으로 로컬 생성하므로 별도 API 비용이 없습니다.
+<div class="news">
+<section class="news-flow-sec reveal"><h2 class="news-flow__t">이 도감은</h2><div class="news-flow"><p>현상설계 산출물 — 컨셉·다이어그램 / 매싱 / 라이노·GH 모델 / 도면 / 렌더·CG / 패널 / 보고서 — 을 실제로 더 빨리·낫게 뽑게 해주는 AI·디지털 도구만 단계별로 모은 <strong>실무 도구 도감</strong>입니다. 가격·플랫폼·한국 사용성·성숙도를 빠짐없이 적고, 모르면 "확인 필요"로 둡니다. 데모면 데모, 별로면 별로라고 씁니다. 각 카드의 <strong>써먹기</strong>는 그 도구가 당신 파이프라인(AutoCAD·Illustrator·Rhino·Grasshopper·렌더·패널)에 어디서 붙는지를 짚습니다. <strong>매주 한 번</strong>, 이 도구들을 엮은 <strong>실전 레시피</strong>(실제로 돌려본 워크플로우 + 결과물)를 새 회차로 올립니다 — 위 ⭐에서 최신 레시피로.</p></div></section>
+<section class="news-sec">
+<h2 class="news-sec__t">컨셉 · 다이어그램</h2>
+<p class="news-sec__lead">대지·매싱·평면 대안을 자동으로 깔아보는 초기 검토 도구.</p>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">01</span>
+    <a class="ni__t" href="https://www.autodesk.com/products/forma/overview" target="_blank" rel="noopener">Autodesk Forma <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">컨셉 · 다이어그램</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">초기 대지·매싱 단계 분석(일조·바람·소음)과 대안 비교. 구 Spacemaker.</p>
+  <ul class="ni__pts"><li>유료 구독 (연 $500~$1,625 선, 3개 플랜) + 무료체험. 영구 무료 없음</li><li>웹 브라우저 (클라우드 SaaS), Autodesk 계정</li><li>한국: 영어 UI, Autodesk 계정/해외카드 결제 / 한국 사용 제약 없음(단가 부담은 소형 사무소에서 지적됨)</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">현상 초기 대지분석에서 매스 대안별 일조·바람·소음을 정량 비교해 컨셉 근거로 쓰고, 채택안을 라이노로 가져가 본 모델링을 시작하는 진입점.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://www.autodesk.com/products/forma/overview" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">02</span>
+    <a class="ni__t" href="https://www.testfit.io/" target="_blank" rel="noopener">TestFit <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">컨셉 · 다이어그램</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">대지 조건 넣으면 배치·주차·세대 매싱을 즉시 생성해 사업성/대안 검토.</p>
+  <ul class="ni__pts"><li>유료 구독: Parking Solver 연 $2,100 / Site Solver 연 $10,000부터 / 번들 연 $5,900. 무료체험은 영업 데모 형태</li><li>웹 (클라우드), Revit·AutoCAD·SketchUp·Excel·PDF 내보내기</li><li>한국: 영어 UI, 영업 통한 계약 / 한국 사용 제약 없음(단 가격대 높음)</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">주거·복합 현상 초기 사업성 검토에서 배치·주차·세대수를 수 초 만에 뽑아 규모/수익 가정을 빠르게 흔들어보는 용도. 디테일 설계 도구는 아님.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.testfit.io/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">03</span>
+    <a class="ni__t" href="https://hypar.io/" target="_blank" rel="noopener">Hypar <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">컨셉 · 다이어그램</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">규칙(스페이스 프로그램)에서 건물 매싱·평면을 생성, 함수형 조립.</p>
+  <ul class="ni__pts"><li>무료 티어 + Pro 월 $25(검색 기준) + Enterprise 별도. 가격 원문 페이지는 JS 렌더로 미확인</li><li>웹 (클라우드), Revit·Rhino·Grasshopper 연동</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음. 함수 작성에 코딩 친숙도 필요</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">반복되는 건물 설계 로직(코어 배치·외피·조닝)을 함수 블록으로 정의해 자동 조립하는 쪽이라, 규모검토를 넘어 규칙화 가능한 워크플로우를 만들 때 라이노/레빗과 데이터 교환.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://hypar.io/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">04</span>
+    <a class="ni__t" href="https://www.finch3d.com/" target="_blank" rel="noopener">Finch <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">컨셉 · 다이어그램</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">실시간 생성형 평면·매싱, 그래프 기반 규칙으로 즉시 피드백.</p>
+  <ul class="ni__pts"><li>무료 티어 + Basic 월 €49(14일 체험) + Enterprise 연 €14,500(최소 3석)</li><li>웹 (app.finch3d.com)</li><li>한국: 영어 UI, 유로 결제 / 한국 사용 제약 없음. 평면 자동생성은 해외 코드 기준이라 국내 법규 직결 아님</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">초기 평면·매싱을 실시간 그래프 규칙으로 돌려 면적·성능 지표를 즉시 확인하는 컨셉 스터디용. 결과는 BIM 지오메트리로 내려 본 설계로 이관.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.finch3d.com/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">05</span>
+    <a class="ni__t" href="https://www.maket.ai/" target="_blank" rel="noopener">Maket <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">컨셉 · 다이어그램</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">프롬프트/조건으로 주거 평면 대안과 조닝을 생성.</p>
+  <ul class="ni__pts"><li>무료 플랜(월 50크레딧, 카드 불필요) + Plus 월 $20(월 300크레딧) + 충전팩 $10/150크레딧</li><li>웹 (app.maket.ai)</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음. 평면 규칙이 해외 주거 기준 중심</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">단독·소규모 주거 현상에서 프롬프트로 평면 대안을 다량 뽑아 초기 조닝 아이디어를 빠르게 펼칠 때. 국내 법규 검토는 별도이며, 디테일은 라이노/캐드에서 재작성.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.maket.ai/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">06</span>
+    <a class="ni__t" href="https://www.snaptrude.com/" target="_blank" rel="noopener">Snaptrude <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">컨셉 · 다이어그램</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">브라우저 BIM 모델러, 빠른 매싱·평면을 Revit/SketchUp과 연동.</p>
+  <ul class="ni__pts"><li>무료체험 제공 + 학생·교육용 무료. 유료 구독 단가는 가격 페이지 JS 렌더로 미확인('확인 필요')</li><li>웹 브라우저 (클라우드 BIM), Revit(.rvt)·Rhino 내보내기</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">브라우저에서 매싱→BIM 원클릭 변환으로 초기안을 팀이 동시에 만지고, 결과를 Revit으로 넘겨 본 BIM 문서화로 잇는 협업 컨셉 단계 도구.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.snaptrude.com/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">07</span>
+    <a class="ni__t" href="https://architechtures.com/" target="_blank" rel="noopener">Architechtures <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">컨셉 · 다이어그램</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">AI 주거 설계 웹툴 — 대지·법규 조건 넣으면 배치·유닛 평면 대안을 분 단위로 생성, 초기 규모검토용</p>
+  <ul class="ni__pts"><li>유료 구독(7일 무료체험). 정확 단가는 가격 페이지 JS 렌더로 미확인('확인 필요')</li><li>웹 브라우저 (클라우드)</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음. 평면 규칙이 해외 주거 기준 중심이라 국내 법규 직결 아님</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">공동주택 현상 초기에 대지·프로그램 조건으로 배치·유닛 평면 대안을 분 단위로 뽑아 규모·세대수 가정을 검토할 때. 국내 법규는 별도 확인, 디테일은 라이노/캐드 재작성.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://architechtures.com/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">08</span>
+    <a class="ni__t" href="https://www.giraffe.build/" target="_blank" rel="noopener">Giraffe <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">컨셉 · 다이어그램</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">웹 기반 도시·대지 스터디 툴 — 지도 위에 매스 스케치 + 면적·지표 자동 집계, 초기 배치 대안 비교</p>
+  <ul class="ni__pts"><li>무료 시작(카드 불필요) + 유료 플랜(단가 미표기, '확인 필요')</li><li>웹 브라우저 (지도 기반 공간 플랫폼)</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음. 지적·지도 데이터는 국내 소스 별도 연동 필요</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">지도 위에 직접 매스를 올려 면적·밀도 지표를 실시간 집계하며 단지·도시 규모 배치 대안을 비교할 때. 대규모 현상의 초기 마스터플랜 스터디에 적합.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.giraffe.build/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+</section>
+<section class="news-sec">
+<h2 class="news-sec__t">모델링 · 라이노/GH/CAD</h2>
+<p class="news-sec__lead">파라메트릭·환경분석·도면 자동화. 본 모델링 단계에 붙는 것들.</p>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">09</span>
+    <a class="ni__t" href="https://www.food4rhino.com/en" target="_blank" rel="noopener">Food4Rhino <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">모델링 · 라이노/GH/CAD</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">라이노·그래스호퍼 플러그인 마켓플레이스. 신규/업뎃 플러그인의 집결지.</p>
+  <ul class="ni__pts"><li>무료 (플랫폼 자체는 무료, 개별 플러그인은 무료/유료 혼재)</li><li>웹 마켓플레이스 (McNeel 운영), Rhino·Grasshopper 플러그인 배포</li><li>한국: 영어 UI / 한국 사용 제약 없음. 개별 플러그인 결제는 각 개발사 정책</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">라이노/그래스호퍼 워크플로우에 필요한 플러그인(환경분석·최적화·패널화 등)을 찾아 까는 출발점. 도구 자체보다 '어디서 구하나'의 허브.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://www.food4rhino.com/en" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">10</span>
+    <a class="ni__t" href="https://www.shapediver.com/" target="_blank" rel="noopener">ShapeDiver <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">모델링 · 라이노/GH/CAD</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">그래스호퍼 정의를 클라우드/웹앱으로 배포, 파라메트릭 컨피규레이터.</p>
+  <ul class="ni__pts"><li>무료 계정(월 50크레딧) + 유료 업그레이드(단가는 가격 페이지 미표기, '확인 필요')</li><li>웹/클라우드 (Grasshopper 정의를 온라인 배포), 2016~ 운영</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">완성한 그래스호퍼 정의를 웹 컨피규레이터로 띄워 발주처·심사·내부 검토자가 파라미터를 직접 돌려보게 할 때. 라이노 없는 상대에게 파라메트릭 안을 공유하는 통로.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.shapediver.com/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">11</span>
+    <a class="ni__t" href="https://www.wallacei.com/" target="_blank" rel="noopener">Wallacei <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">모델링 · 라이노/GH/CAD</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">그래스호퍼 진화 솔버(다목적 최적화)와 분석 시각화.</p>
+  <ul class="ni__pts"><li>무료 (Food4Rhino 배포, 무료 플러그인)</li><li>Grasshopper 플러그인 (Rhino)</li><li>한국: 영어 UI / 한국 사용 제약 없음. 사용에 진화알고리즘·GH 이해 필요</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">매스·외피·평면을 일조/면적/조망 등 여러 목표로 동시에 최적화하고, 파레토 해를 시각화해 '왜 이 안인가'를 현상 설명에 근거로 쓸 때.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.wallacei.com/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">12</span>
+    <a class="ni__t" href="https://www.ladybug.tools/" target="_blank" rel="noopener">Ladybug Tools <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">모델링 · 라이노/GH/CAD</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">그래스호퍼 환경분석(일조·에너지·CFD) 오픈소스 스위트.</p>
+  <ul class="ni__pts"><li>오픈소스(무료). Radiance·EnergyPlus·OpenFOAM 검증 엔진 기반</li><li>Grasshopper 플러그인 (Rhino) — Ladybug·Honeybee·Butterfly·Dragonfly</li><li>한국: 영어 UI / 한국 사용 제약 없음. 국내 기상데이터(EPW)는 별도 확보 필요</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">현상 설명용 일조·일사·바람·에너지 다이어그램을 라이노 모델에서 직접 뽑을 때. 50만+ 다운로드의 사실상 표준이고 비용 0이라 사무소 진입장벽이 낮음.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.ladybug.tools/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">13</span>
+    <a class="ni__t" href="https://www.pollination.solutions/" target="_blank" rel="noopener">Pollination <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">모델링 · 라이노/GH/CAD</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">클라우드 환경시뮬레이션, Ladybug 워크플로우를 서버에서.</p>
+  <ul class="ni__pts"><li>무료체험 제공 + 유료 구독(단가는 가격 페이지 미표기, '확인 필요')</li><li>웹/클라우드 (app.pollination.solutions) + Revit·Rhino 플러그인</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">Ladybug로 짠 환경분석을 로컬 대신 서버에서 대규모로 돌려 마감 직전 무거운 시뮬레이션 시간을 단축할 때. 결과를 라이노·레빗으로 회수해 패널 다이어그램화.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.pollination.solutions/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">14</span>
+    <a class="ni__t" href="https://www.rhino3d.com/8/" target="_blank" rel="noopener">Rhino 8 (SubD·ShrinkWrap) <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">모델링 · 라이노/GH/CAD</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">SubD·ShrinkWrap·QuadRemesh 등 컨셉 형상·메시 정리 신기능.</p>
+  <ul class="ni__pts"><li>유료 영구 라이선스(단가는 구매 페이지 별도, '확인 필요'). 90일 무료체험</li><li>Windows·Mac 데스크톱 (Apple Silicon 네이티브)</li><li>한국: 한국 총판·교육용 라이선스 유통 있음(국내 구매 가능). UI 영어 위주</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">현상 자유형상 컨셉을 SubD로 빚고 ShrinkWrap으로 잡다한 메시·스캔을 단일 솔리드로 정리해, 이후 그래스호퍼·렌더·도면화의 기반 모델을 만드는 본 작업대.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.rhino3d.com/8/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">15</span>
+    <a class="ni__t" href="https://www.swapp.ai/" target="_blank" rel="noopener">Swapp / text-to-CAD 류 <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">모델링 · 라이노/GH/CAD</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">BIM/도면 자동화·검토. 실시설계 단계 자동화 시도.</p>
+  <ul class="ni__pts"><li>엔터프라이즈 영업 모델(공개 가격 없음, '확인 필요'). 무료 티어 없음, Early Access 형태</li><li>BIM 자동화 플랫폼 (설계사무소 BIM 워크플로우 대상)</li><li>한국: 영어 UI, 영업 계약 / 한국 도입 사례·제약 확인 필요</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">현상보다 당선 후 실시설계 문서화 자동화 쪽. 반복 도면·디테일 생산을 줄이는 대형 사무소용이라, 현상 단계에서는 직접 접점이 적음(참고용).</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.swapp.ai/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">16</span>
+    <a class="ni__t" href="https://www.meshy.ai/" target="_blank" rel="noopener">Meshy <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">모델링 · 라이노/GH/CAD</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">텍스트·이미지 → 3D 모델 생성 — 조경 소품·가구·컨텍스트 에셋을 라이노로 가져올 때</p>
+  <ul class="ni__pts"><li>무료(월 100크레딧, 출력 CC BY 4.0) + Pro 월 $20(1,000크레딧) + Max 월 $60 + Enterprise 월 $90</li><li>웹 브라우저 (텍스트/이미지→3D, 텍스처·리깅)</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음. 무료 출력은 출처표시 라이선스</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">패널·렌더 채울 가구·가로시설물·조경 소품을 프롬프트로 만들어 라이노/블렌더로 반입할 때. 정밀 건축 형상이 아니라 컨텍스트 에셋 보강용.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://www.meshy.ai/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">17</span>
+    <a class="ni__t" href="https://www.tripo3d.ai/" target="_blank" rel="noopener">Tripo <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">모델링 · 라이노/GH/CAD</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">이미지 한 장 → 3D 메시 변환 — 레퍼런스 사진을 매스 스터디용 3D로 빠르게</p>
+  <ul class="ni__pts"><li>무료 Basic(월 300크레딧, 비상업) + Professional 월 $19.90(3,000크레딧)~ (연결제 최대 40% 할인)</li><li>웹 브라우저 (studio.tripo3d.ai) + API</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음. 무료 출력은 상업 사용 불가</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">레퍼런스 사진/스케치 한 장을 3D 메시로 빠르게 만들어 매스 스터디·컨텍스트 배치에 던져볼 때. 무료는 비상업이라 제출물엔 유료/검토 필요.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://www.tripo3d.ai/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">18</span>
+    <a class="ni__t" href="https://hyper3d.ai/" target="_blank" rel="noopener">Rodin (Hyper3D) <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">모델링 · 라이노/GH/CAD</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">고품질 3D 에셋 생성 — 디테일 있는 오브젝트(가로시설물·조형물)를 프롬프트로</p>
+  <ul class="ni__pts"><li>무료(가입 10크레딧, 생성 무료·다운로드 시 과금) + Creator 월 $30 + Business 월 $120 + Education 월 $12. 모델당 $0.5~1.5</li><li>웹 브라우저 (텍스트/이미지→3D) + API(fal 등)</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음. 다운로드 시점 과금 구조</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">디테일이 필요한 조형물·가로시설물·특수 오브젝트를 프롬프트로 만들어 블렌더/라이노로 반입할 때. '결과 보고 마음에 들 때만 결제'라 시안 탐색 비용이 낮음.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://hyper3d.ai/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+</section>
+<section class="news-sec">
+<h2 class="news-sec__t">렌더 · CG · 이미지</h2>
+<p class="news-sec__lead">뷰포트 AI 렌더부터 이미지 생성·업스케일까지, 비주얼 라인.</p>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">19</span>
+    <a class="ni__t" href="https://www.evolvelab.io/veras" target="_blank" rel="noopener">Veras (EvolveLAB) <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">라이노·스케치업·레빗 뷰포트를 형상 유지한 채 AI 렌더로. 컨셉 패널 배경에 강함.</p>
+  <ul class="ni__pts"><li>유료: Named 월 $59(연결제 시 $29/월=$348/년), Floating 연 $612, 학생 연 $149. 30렌더·15일 무료체험</li><li>SketchUp·Revit·Rhino(7~8)·Archicad·Vectorworks·Forma 플러그인 + 웹앱</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음. Enscape 구독에 Veras 포함되기도</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">라이노/스케치업 뷰포트 형상을 그대로 고정하고 재질·분위기만 AI로 입혀, 컨셉 투시를 일러로 반입해 패널 배경 컷으로 쓰는 가장 직접적인 라인.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.evolvelab.io/veras" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">20</span>
+    <a class="ni__t" href="https://www.d5render.com/" target="_blank" rel="noopener">D5 Render <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">실시간 레이트레이싱 렌더러 + AI 텍스처/디테일/업스케일 기능.</p>
+  <ul class="ni__pts"><li>Community 무료(상시) + Pro 월 $38(연 $360≈$30/월) + Teams 연 $708/석</li><li>Windows 데스크톱 (GPU), Rhino·Revit·SketchUp·3ds Max 등 라이브 싱크 플러그인</li><li>한국: 영어/중문 UI, 해외카드 결제 / 한국 사용 제약 없음. 무료 버전 실무 활용 폭 넓음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">라이노/스케치업 모델을 실시간 동기화해 분위기 투시·워크스루를 뽑고, AI 업스케일로 해상도를 끌어올려 패널·영상 제출물로 바로 쓰는 가성비 렌더 라인.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://www.d5render.com/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">21</span>
+    <a class="ni__t" href="https://www.enscape3d.com/" target="_blank" rel="noopener">Enscape <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">라이노·레빗·스케치업 실시간 렌더·VR, AI 기능(Veras) 포함.</p>
+  <ul class="ni__pts"><li>유료(원화 표기): Solo 월 ₩67,000(연 ₩804,000)/Premium 월 ₩108,000/Collection. 연결제 45% 절약, 14일 체험</li><li>Windows·Mac, Revit·SketchUp·Rhino·Archicad·Vectorworks 플러그인</li><li>한국: 사이트에서 원화 가격 노출 / 한국 결제·사용 정착됨. UI 영어</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">라이노/레빗 모델 안에서 바로 실시간 투시·VR을 돌려 발주처 검토와 패널 투시를 만들고, 묶여 있는 Veras·Chaos AI로 분위기 컷까지 한 구독에서 처리.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.enscape3d.com/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">22</span>
+    <a class="ni__t" href="https://lumion.com/" target="_blank" rel="noopener">Lumion <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">건축 실시간 렌더, 풍부한 에셋·환경. 분위기 투시·영상.</p>
+  <ul class="ni__pts"><li>연구독: View 연 $229 / Pro 연 $1,149 / Studio 연 $1,499 (연결제 전용, 신규 영구판 없음)</li><li>Windows 데스크톱 (GPU), Rhino·SketchUp·Revit 임포트/라이브 싱크</li><li>한국: 한국 총판 유통 있음, 영어 UI / 한국 사용 정착. 단가 높은 편</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">조경·하늘·군중 에셋이 풍부해 현상 분위기 투시와 1~2분짜리 제출 영상을 빠르게 뽑을 때. 라이노/스케치업 모델을 그대로 받아 무드 위주 컷을 양산.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://lumion.com/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">23</span>
+    <a class="ni__t" href="https://www.krea.ai/" target="_blank" rel="noopener">Krea <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">실시간 AI 이미지/렌더, 스케치·도형을 즉시 비주얼로(컨셉 빠른 시안).</p>
+  <ul class="ni__pts"><li>무료(일 100 컴퓨트, 카드 불필요) + 유료(연결제 40% 할인 표기, 정확 단가는 미표기 '확인 필요')</li><li>웹 브라우저</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">스케치나 매스 도형을 실시간으로 비주얼화해 컨셉 시안을 분 단위로 흔들 때. 확정 전 무드 탐색용이고, 정밀 형상 고정이 필요하면 Veras/ControlNet로 넘어감.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.krea.ai/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">24</span>
+    <a class="ni__t" href="https://magnific.ai/" target="_blank" rel="noopener">Magnific <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">AI 업스케일·디테일 강화. 저해상 렌더를 인쇄 패널 해상도로.</p>
+  <ul class="ni__pts"><li>유료: Pro 월 $39 / Premium 월 $99 / Business 월 $299 (연결제 17% 할인). 24시간·50토큰 체험</li><li>웹 브라우저 (Freepik 계열)</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음. 미사용 토큰 이월 안 됨</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">AI 렌더나 저해상 컷을 인쇄용 고해상으로 끌어올리며 디테일을 '상상해' 채워줄 때. 단 원본에 없던 질감을 더하므로 도면·정밀 컷보다 분위기 배경 업스케일에 적합.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://magnific.ai/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">25</span>
+    <a class="ni__t" href="https://www.promeai.pro/" target="_blank" rel="noopener">PromeAI <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">스케치→렌더, 리라이팅, 컨트롤 가능한 건축 비주얼 생성.</p>
+  <ul class="ni__pts"><li>무료 플랜(일 100크레딧) + Base 월 $16 / Standard 월 $29 / Pro 월 $59 / Team 연 $3,900</li><li>웹 브라우저</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">손스케치나 도형을 컨트롤 가능한 조건으로 렌더화해 초기 시안을 펼칠 때. 무료 일 크레딧이 넉넉해 가벼운 컨셉 탐색의 진입 도구로 쓰기 좋음.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://www.promeai.pro/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">26</span>
+    <a class="ni__t" href="https://lookx.ai/" target="_blank" rel="noopener">LookX <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">베타</span></span>
+  </header>
+  <p class="ni__body">건축 특화 AI 렌더·컨셉 생성, 스타일·레퍼런스 제어.</p>
+  <ul class="ni__pts"><li>무료 Basic(100 X-points) + 유료 월 $20(연 $199, 무제한 생성·월 580 X-points). 7일 체험</li><li>웹 브라우저 + SketchUp·Rhino 플러그인</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">건축 특화 스타일·레퍼런스 제어로 컨셉 렌더를 만들고, 스케치업/라이노 플러그인으로 모델 뷰를 받아 분위기 컷화. 실시간·영상 등 신기능은 아직 다듬어지는 단계.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://lookx.ai/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">27</span>
+    <a class="ni__t" href="https://www.visoid.com/" target="_blank" rel="noopener">Visoid <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">건축 AI 렌더, 모델 뷰를 분위기 이미지로 빠르게.</p>
+  <ul class="ni__pts"><li>무료(1k 해상도) + Pro 연 $15/월(2k·월 500크레딧) + Premium 연 $39/월(4k·3D 업로드) + Team</li><li>웹 브라우저 (3D 업로드는 상위 플랜)</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">라이노/스케치업에서 뽑은 모델 뷰를 업로드해 분위기 투시를 빠르게 뽑을 때. 상위 플랜의 3D 업로드·재질 제어로 형상 일관성을 어느 정도 잡아 패널 컷으로 사용.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.visoid.com/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">28</span>
+    <a class="ni__t" href="https://www.arko.ai/" target="_blank" rel="noopener">ArkoAI <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">스케치업/라이노 플러그인, 모델 뷰→AI 렌더.</p>
+  <ul class="ni__pts"><li>유료 월 $25부터(검색 기준), 월/연 구독 + 추가 크레딧 구매. 무료체험 제공</li><li>SketchUp(Win/Mac)·Rhino(Win)·Revit(2021~2026, Win) 플러그인</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">스케치업/라이노 안에서 버튼 하나로 현재 뷰를 AI 렌더화. render 모드는 형상 유지, ideate 모드는 형상까지 변형해 초기 디자인 탐색까지 같이 돌리는 인플러그인 라인.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.arko.ai/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">29</span>
+    <a class="ni__t" href="https://github.com/lllyasviel/ControlNet" target="_blank" rel="noopener">Stable Diffusion + ControlNet <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">형상(깊이·외곽선)을 고정한 채 재질·분위기만 AI로. 로컬 자유도 최고.</p>
+  <ul class="ni__pts"><li>오픈소스(무료, 로컬). Apache-2.0 라이선스</li><li>로컬 GPU (PyTorch, Windows/Mac/Linux), HuggingFace 가중치</li><li>한국: 영어/코드 기반 / 한국 사용 제약 없음. 설치·GPU·VRAM 요구로 진입장벽 높음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">라이노 뷰포트의 깊이맵·캐니 외곽선을 조건으로 걸어 형상을 정확히 고정한 채 재질·분위기만 바꿀 때. 비용 0·완전 통제가 강점이라 일러 반입 전 정밀 렌더 변환에 적합. 단 ComfyUI/세팅 학습 필요.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://github.com/lllyasviel/ControlNet" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">30</span>
+    <a class="ni__t" href="https://www.comfy.org/" target="_blank" rel="noopener">ComfyUI <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">노드 기반 SD 워크플로우. 건축 렌더 파이프라인을 정밀 조립.</p>
+  <ul class="ni__pts"><li>오픈소스(무료, 로컬·데스크톱) + 클라우드/엔터프라이즈 유료 옵션</li><li>로컬 데스크톱 + 클라우드 + API (노드 기반 SD 파이프라인)</li><li>한국: 영어/노드 기반 / 한국 사용 제약 없음. GPU·워크플로우 구성 학습 필요</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">ControlNet·업스케일·인페인트를 노드로 엮어 '라이노 뷰 → 형상고정 렌더 → 패널 해상도'까지를 재현 가능한 파이프라인으로 고정할 때. 한 번 짜두면 시리즈 컷을 일관되게 양산.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.comfy.org/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">31</span>
+    <a class="ni__t" href="https://www.midjourney.com/" target="_blank" rel="noopener">Midjourney <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">컨셉 이미지 생성의 표준 — 분위기·재질·매스 스터디 이미지를 프롬프트로, 패널 무드보드용</p>
+  <ul class="ni__pts"><li>유료: Basic 월 $10 / Standard 월 $30 / Pro 월 $60 / Mega 월 $120 (연결제 20% 할인). 무료 티어 없음</li><li>웹(midjourney.com) + Discord</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">현상 무드보드·분위기·재질 레퍼런스 이미지를 프롬프트로 대량 생성할 때. 형상 통제는 약해 정밀 투시보다 컨셉/무드 컷·표지 이미지에 적합.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://www.midjourney.com/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">32</span>
+    <a class="ni__t" href="https://ideogram.ai/" target="_blank" rel="noopener">Ideogram <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">텍스트가 깨지지 않는 이미지 생성 — 레터링·사인지·다이어그램 라벨 들어가는 컷에 강함</p>
+  <ul class="ni__pts"><li>무료(일 10 슬로우 생성, 결과 공개) + Basic 월 $8(400크레딧) + Plus 월 $20(1,000크레딧)</li><li>웹 브라우저</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음. 한글 텍스트 정확도는 별도 확인 권장</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">이미지 안 글자가 깨지지 않아 사인지·표지 타이틀·다이어그램 라벨이 들어가는 컷에 강함. 패널 그래픽 중 텍스트 결합 이미지 생성에 특화.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://ideogram.ai/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">33</span>
+    <a class="ni__t" href="https://blackforestlabs.ai/" target="_blank" rel="noopener">FLUX (Black Forest Labs) <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">오픈소스 이미지 모델 — 로컬 GPU에서 ControlNet과 묶어 렌더 보정·재질 변환, 비용 0</p>
+  <ul class="ni__pts"><li>오픈 웨이트(무료, 비상업 라이선스) + 상업용/자체호스팅 라이선스 별도 + 클라우드 API 유료. 플레이그라운드 무료</li><li>로컬 GPU (오픈 웨이트, HuggingFace/GitHub) + 클라우드 API. 현재 FLUX.2 세대</li><li>한국: 영어/코드 기반 / 한국 사용 제약 없음. 상업 사용 시 라이선스 확인 필요, GPU 요구</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">로컬 GPU에서 ComfyUI·ControlNet과 묶어 라이노 뷰를 형상 고정 렌더로 변환하는 SD 대안 모델. 비용 0이 강점이나, 제출물 상업 사용 시 라이선스 조건을 반드시 확인.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://blackforestlabs.ai/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">34</span>
+    <a class="ni__t" href="https://runwayml.com/" target="_blank" rel="noopener">Runway <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">AI 영상 생성 — 정지 렌더를 카메라 무빙 영상으로, 제출 영상물·워크스루 시퀀스 보조</p>
+  <ul class="ni__pts"><li>무료(1회성 125크레딧) + Standard 월 $12(연)~$15 + Pro 월 $28~$35 + Max 월 $76. 크레딧제(Gen-4.5 1초=25크레딧)</li><li>웹 브라우저 (app.runwayml.com)</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">확정 투시 렌더를 카메라 무빙·짧은 시퀀스 영상으로 키워 제출 영상물·워크스루를 보조할 때. 정밀 건축 영상은 아니고 분위기 무빙 컷 보강용.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://runwayml.com/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">35</span>
+    <a class="ni__t" href="https://www.twinmotion.com/" target="_blank" rel="noopener">Twinmotion <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">렌더 · CG · 이미지</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">에픽게임즈 실시간 렌더러 — 무료 시작, 라이노·스케치업 다이렉트 링크로 투시·영상 빠르게</p>
+  <ul class="ni__pts"><li>매출 $1M 미만 개인·기업 무료. 그 이상/클라우드 필요 시 연 $445/석. 신규 영구판 폐지(구 영구판은 유지)</li><li>Windows·Mac 데스크톱 (Unreal 기반), Rhino·SketchUp·Revit Datasmith 다이렉트 링크</li><li>한국: 영어 UI, Epic 계정 / 한국 사용 제약 없음. 소규모 사무소는 사실상 무료</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">라이노/스케치업을 다이렉트 링크로 받아 실시간 투시·영상을 뽑는 렌더러. 매출 $1M 미만이면 무료라 소규모 사무소의 현상 영상·투시 진입 비용이 0.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://www.twinmotion.com/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+</section>
+<section class="news-sec">
+<h2 class="news-sec__t">패널 · 보고서</h2>
+<p class="news-sec__lead">누끼·벡터화·업스케일·레이아웃 — 패널 출력 직전 마무리.</p>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">36</span>
+    <a class="ni__t" href="https://magnific.ai/" target="_blank" rel="noopener">Magnific (패널 인쇄) <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">패널 · 보고서</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">패널 출력 전 렌더·이미지 업스케일로 대형 인쇄 해상도 확보.</p>
+  <ul class="ni__pts"><li>유료: Pro 월 $39 / Premium 월 $99 / Business 월 $299 (연결제 17% 할인). 24시간·50토큰 체험</li><li>웹 브라우저 (Freepik 계열)</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음. 미사용 토큰 이월 안 됨</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">A1/A0 패널 인쇄 직전, 핵심 투시 컷을 인쇄 해상도로 업스케일하는 마감 단계 용도. 디테일을 보강해 채우므로 분위기 컷엔 강하지만 도면·텍스트 영역엔 부적합.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://magnific.ai/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">37</span>
+    <a class="ni__t" href="https://vectorizer.ai/" target="_blank" rel="noopener">Vectorizer.ai <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">패널 · 보고서</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">래스터 이미지를 벡터로. 다이어그램·로고를 일러용 벡터화.</p>
+  <ul class="ni__pts"><li>웹앱 월 ₩12,999(무제한, 원화 표기) + API는 크레딧제(50크레딧 ₩12,999~). 결과 미리보기 무료</li><li>웹 브라우저 (브라우저 내 처리) + API. 출력 SVG·EPS·DXF·PDF</li><li>한국: 사이트에서 원화 가격 노출, 한국 결제 가능 / 사용 제약 없음. 입력 최대 3MP</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">손으로 그린/래스터 다이어그램·로고·아이콘을 SVG·DXF 벡터로 변환해 일러스트레이터(또는 cad_to_ai_jsx 라인)에서 깔끔히 편집·확대할 때. 패널 그래픽 정리 단계.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://vectorizer.ai/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">38</span>
+    <a class="ni__t" href="https://www.adobe.com/products/firefly.html" target="_blank" rel="noopener">Adobe Firefly / Generative <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">패널 · 보고서</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">일러·포토샵 생성형 채우기·확장. 패널 배경·텍스처·요소 보정.</p>
+  <ul class="ni__pts"><li>무료(월 25크레딧) + Standard 월 $9.99 / Pro 월 $19.99 / Premium 월 $199.99. 표준 생성형채우기는 유료 플랜서 무제한</li><li>웹(Firefly 앱) + Photoshop·Illustrator 내장(생성형 채우기/확장)</li><li>한국: 한국어 UI 지원, 국내 결제(Creative Cloud) 정착 / 사용 제약 없음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">이미 쓰는 포토샵/일러에서 생성형 채우기·확장으로 패널 배경을 늘리고 엔투라지·텍스처 결손을 메울 때. 별도 툴 학습 없이 기존 어도비 패널 작업에 바로 얹히는 게 강점.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://www.adobe.com/products/firefly.html" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">39</span>
+    <a class="ni__t" href="https://gamma.app/" target="_blank" rel="noopener">Gamma <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">패널 · 보고서</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">프롬프트로 제안서/덱 레이아웃 초안 생성. 보고·발표자료 골격.</p>
+  <ul class="ni__pts"><li>무료(가입 시 400 AI크레딧) + Plus 월 $10(연 $8/월) + Pro 월 $20(연 $15/월) + Ultra/Team/Business</li><li>웹 브라우저</li><li>한국: 한국어 입력·생성 지원, 해외카드 결제 / 한국 사용 제약 없음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">현상 제안서·내부 보고·발표 덱의 레이아웃 골격을 프롬프트로 빠르게 잡을 때. 정식 패널 조판 도구는 아니고 텍스트 중심 문서·발표 초안용.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://gamma.app/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">40</span>
+    <a class="ni__t" href="https://www.topazlabs.com/" target="_blank" rel="noopener">Topaz Photo / Gigapixel <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">패널 · 보고서</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">이미지 노이즈·해상도 보정. 패널 사진·렌더 인쇄 품질.</p>
+  <ul class="ni__pts"><li>구독형: Topaz Photo 월 $39 / Gigapixel 월 $29 (로컬·클라우드 무제한 렌더, 매출 $1M 미만 상업 사용 허용)</li><li>Windows·Mac 데스크톱 (플러그인 연동)</li><li>한국: 영어 UI, 해외카드 결제 / 한국 사용 제약 없음. 로컬 처리라 보안 부담 적음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">패널에 들어갈 실사진·렌더의 노이즈를 잡고 해상도를 올리는 인쇄 품질 마감용. 로컬 처리라 대용량 이미지를 외부 업로드 없이 돌릴 수 있는 게 Magnific 대비 장점.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://www.topazlabs.com/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">41</span>
+    <a class="ni__t" href="https://www.remove.bg/" target="_blank" rel="noopener">remove.bg <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">패널 · 보고서</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">배경 제거 자동화 — 인물·수목 누끼를 초 단위로, 패널 엔투라지 작업 시간 단축</p>
+  <ul class="ni__pts"><li>무료(저해상 미리보기) + 크레딧 구독(검색 기준 40크레딧 월 $9 / 200크레딧 월 $39 등, 이미지당 $0.13~0.23)</li><li>웹 + API + Photoshop 확장 + 데스크톱(Win/Mac/Linux) + Android (Canva 계열)</li><li>한국: 한국어 UI 지원, 해외카드 결제 / 한국 사용 제약 없음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">패널 엔투라지(인물·수목·차량) 누끼를 초 단위로 따 일러/포토샵으로 배치할 때. 고해상 출력은 크레딧 차감이라 다량 작업 시 Upscayl·SD 누끼 등과 병행 검토.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified ni__verified--soft">○ 검색 기반</span><a class="ni__story" href="https://www.remove.bg/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+<article class="ni reveal">
+  <header class="ni__h">
+    <span class="ni__n">42</span>
+    <a class="ni__t" href="https://upscayl.org/" target="_blank" rel="noopener">Upscayl <span class="ni__arrow">↗</span></a>
+    <span class="ni__tr"><span class="ni__src">패널 · 보고서</span><span class="ni__score">정식</span></span>
+  </header>
+  <p class="ni__body">무료 오픈소스 업스케일러 — 저해상 렌더를 인쇄 해상도로, Magnific 무료 대안(로컬 실행)</p>
+  <ul class="ni__pts"><li>오픈소스(무료, 로컬 데스크톱). 클라우드 버전은 별도</li><li>Windows·Mac·Linux 데스크톱 (로컬 GPU) + 클라우드 옵션</li><li>한국: 영어 UI / 한국 사용 제약 없음. 로컬 처리라 비용 0·보안 부담 적음</li></ul>
+  <div class="ni__meta">
+    <div class="ni__row ni__row--do"><dt>써먹기</dt><dd><p class="ni__do-text">저해상 렌더·이미지를 로컬에서 최대 16배 업스케일하는 무료 Magnific 대안. 디테일 '상상 보강'은 약하지만 비용 0·외부 업로드 없이 패널 인쇄 해상도 확보에 충분.</p></dd></div>
+  </div>
+  <footer class="ni__f"><span class="ni__verified">✓ 원문 대조</span><a class="ni__story" href="https://upscayl.org/" target="_blank" rel="noopener">도구 보기 →</a></footer>
+</article>
+</section>
+<section class="news-flow-sec reveal"><div class="news-flow"><p class="news-foot">이 도감은 도구가 바뀔 때만 갱신됩니다(매일 재생성하지 않음). 가격·기능은 변하니 결제 전 원문 확인. 누락·오류 제보 환영.</p></div></section>
+</div>

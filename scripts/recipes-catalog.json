@@ -1,0 +1,159 @@
+{
+  "_note": "주간 실전 레시피 백로그. build-recipe.mjs 가 매주 여기서 '아직 안 다룬' 레시피를 하나 골라(LRU 로테이션), 도구 카탈로그(tools-catalog.json)와 엮어 깊은 단계별 워크플로우 회차를 만든다. chain 은 tools-catalog 의 id(+요한 자체도구는 own:* 표기). runnable: guide(웹도구 단계가이드) | blender(Blender MCP로 실물 가능) | cad-jsx(C:/cad_ai/cad_to_ai_jsx.py 로 실물 가능) | local-sd(ComfyUI/SD 필요 — 미설치 동안은 가이드). 새 레시피는 여기 추가.",
+  "recipes": [
+    {
+      "id": "panel-bg-30min",
+      "title": "라이노 모델만으로 패널 배경 투시 30분 컷",
+      "deliverable": "패널",
+      "goal": "컨셉 패널 1장에 들어갈 분위기 투시 배경을, 라이노 매스 모델만 있는 상태에서 30분 안에 인쇄 해상도까지.",
+      "chain": ["veras", "magnific", "adobe-firefly"],
+      "runnable": "guide",
+      "stepsHint": "라이노 뷰/카메라 고정 → Veras 프롬프트·시드 고정해 3컷 → 형상 덜 흐린 컷 선택 → Magnific(또는 Upscayl)로 인쇄 해상도 업스케일 → 일러/포토샵 generative fill 로 하늘·전경 합성·정리",
+      "pitfalls": "Veras가 개구부·디테일을 흐리는 구간 / 업스케일 시 환각 디테일 / 생성물 저작권·심사 고지",
+      "level": "기본"
+    },
+    {
+      "id": "sketch-to-concept",
+      "title": "손스케치 한 장 → 컨셉 투시 5컷",
+      "deliverable": "컨셉",
+      "goal": "초기 컨셉 회의용 분위기 시안 5컷을, 트레이싱 스케치/러프 매스에서 빠르게.",
+      "chain": ["krea", "ideogram", "upscayl"],
+      "runnable": "guide",
+      "stepsHint": "스케치 촬영/스캔 → Krea 실시간 이미지로 스타일·재질 변주 5컷 → 텍스트 라벨 필요하면 Ideogram → Upscayl 무료 업스케일 → 회의용 1장 콘택트시트",
+      "pitfalls": "형상 통제 약함(컨셉용일 뿐 도면 아님) / 같은 시드 안 잡으면 일관성 깨짐",
+      "level": "기본"
+    },
+    {
+      "id": "facade-variations-controlnet",
+      "title": "외피 변주 — 형상 고정, 재질·분위기만 바꿔 N안",
+      "deliverable": "렌더",
+      "goal": "확정된 매스/입면 형상은 그대로 두고 재질·시간대·분위기만 바꾼 입면 변주안을 로컬에서 비용 0으로.",
+      "chain": ["stable-diffusion-controlnet", "comfyui", "flux"],
+      "runnable": "local-sd",
+      "stepsHint": "라이노 입면 뷰 → 깊이/외곽선 맵 추출 → ControlNet(depth/canny)로 형상 고정 → 프롬프트로 재질·분위기 변주 → ComfyUI 그래프로 배치 → 비용 0(로컬 GPU)",
+      "pitfalls": "ComfyUI/SD 설치·VRAM(12GB) 필요 / 첫 셋업 러닝커브 / 설치 전까진 PromeAI·LookX로 대체 가이드",
+      "level": "심화"
+    },
+    {
+      "id": "gh-massing-alternatives",
+      "title": "GH로 대지 매싱 대안 자동 생성 + 비교 다이어그램",
+      "deliverable": "모델링",
+      "goal": "대지 polyline·법규 파라미터에서 매스 대안 여러 개를 자동 생성하고, 채택 근거가 되는 비교 지표·다이어그램까지.",
+      "chain": ["food4rhino", "wallacei", "ladybug-tools"],
+      "runnable": "blender",
+      "stepsHint": "대지·용적·높이 파라미터 정의 → GH로 매스 대안 생성 → Ladybug 일조/조망 평가 → Wallacei 다목적 최적화로 후보 추림 → 상위안 비교 다이어그램",
+      "pitfalls": "GH 정의 셋업 시간 / 평가지표 과신 금지(컨셉 근거일 뿐) / 플러그인 Rhino8 호환",
+      "level": "심화"
+    },
+    {
+      "id": "site-analysis-forma",
+      "title": "초기 대지분석 일조·바람 컷으로 컨셉 근거 만들기",
+      "deliverable": "컨셉",
+      "goal": "매스 대안별 일조·바람·소음을 정량 비교해, 패널·보고서에 넣을 '왜 이 배치인가' 근거 다이어그램을.",
+      "chain": ["autodesk-forma", "vectorizer-ai"],
+      "runnable": "guide",
+      "stepsHint": "Forma에 대지·매스 대안 입력 → 일조/바람/소음 분석 → 비교 캡처 → Vectorizer.ai로 벡터화 → 일러에서 패널 다이어그램으로 정리",
+      "pitfalls": "구독 단가 / 한국 기상데이터 정합 확인 / 분석은 상대비교용",
+      "level": "기본"
+    },
+    {
+      "id": "housing-massing-testfit",
+      "title": "주거·복합 현상 사업성 매싱 → 규모검토 슬라이드",
+      "deliverable": "컨셉",
+      "goal": "대지 조건에서 배치·주차·세대수를 수초에 뽑아 규모/수익 가정을 빠르게 흔들고, 초기 검토 슬라이드까지.",
+      "chain": ["testfit", "architechtures", "gamma"],
+      "runnable": "guide",
+      "stepsHint": "TestFit/Architechtures에 대지·법규 입력 → 배치 대안 몇 개 → DXF/지표 내보내기 → Gamma로 규모검토 덱 골격 → 라이노로 채택안 이관",
+      "pitfalls": "고가 구독 / 한국 건축법 직결 아님(지표 직접 검증) / 결과는 골격",
+      "level": "기본"
+    },
+    {
+      "id": "context-3d-assets",
+      "title": "주변 컨텍스트·가로시설물 3D를 프롬프트로 만들어 라이노 반입",
+      "deliverable": "모델링",
+      "goal": "조감/투시에 깔 주변 건물 매스·조경 소품·가로시설물을 빠르게 3D로 만들어 라이노 씬에 배치.",
+      "chain": ["meshy", "tripo", "rodin-hyper3d"],
+      "runnable": "blender",
+      "stepsHint": "레퍼런스 이미지/텍스트 → Meshy·Tripo로 3D 메시 → 디테일 필요한 오브젝트는 Rodin → OBJ/FBX 라이노 반입 → 스케일·배치 정리",
+      "pitfalls": "메시 품질·폴리수 / 무료 등급 상업이용 제약(Tripo 등) / 근경엔 부적합",
+      "level": "기본"
+    },
+    {
+      "id": "still-to-video",
+      "title": "정지 렌더 → 카메라 무빙 영상(제출 영상물용)",
+      "deliverable": "렌더",
+      "goal": "패널에 박은 핵심 투시 1~2컷을 짧은 카메라 무빙 시퀀스로 만들어 제출 영상물/워크스루 보조에.",
+      "chain": ["runway", "twinmotion", "d5-render"],
+      "runnable": "guide",
+      "stepsHint": "확정 투시 선택 → Runway로 카메라 무빙 생성(또는 Twinmotion/D5에서 카메라 패스 직접) → 컷 편집 → 길이·해상도 제출 규격 맞춤",
+      "pitfalls": "AI 영상의 형상 흔들림 / 실제 모델 기반(Twinmotion/D5)이 안전 / 제출 규격 확인",
+      "level": "심화"
+    },
+    {
+      "id": "entourage-cleanup",
+      "title": "패널 엔투라지 누끼+업스케일 일괄 처리",
+      "deliverable": "패널",
+      "goal": "인물·수목·차량 엔투라지 누끼를 초 단위로 따고 인쇄 해상도로 올려 패널 합성 시간을 단축.",
+      "chain": ["remove-bg", "upscayl", "topaz-photo-gigapixel"],
+      "runnable": "guide",
+      "stepsHint": "엔투라지 소스 모음 → remove.bg 일괄 누끼 → Upscayl(무료)/Topaz로 업스케일 → 일러 심볼 라이브러리로 정리 → 패널 배치",
+      "pitfalls": "remove.bg 고해상 크레딧 차감(다량은 로컬 대안) / 머리카락·투명 경계 / 라이선스",
+      "level": "기본"
+    },
+    {
+      "id": "diagram-vectorize",
+      "title": "래스터 다이어그램·로고 → 일러 편집 가능한 벡터",
+      "deliverable": "패널",
+      "goal": "캡처·손그림·저해상 다이어그램을 일러에서 선·색 편집 가능한 벡터로 변환해 패널 품질로.",
+      "chain": ["vectorizer-ai", "adobe-firefly"],
+      "runnable": "guide",
+      "stepsHint": "다이어그램 이미지 → Vectorizer.ai로 SVG → 일러 반입·색/선 정리 → 필요시 Firefly generative로 요소 보강",
+      "pitfalls": "복잡한 이미지는 패스 폭발 / 텍스트는 폰트로 다시 / 미세조정 필요",
+      "level": "기본"
+    },
+    {
+      "id": "report-draft-gamma",
+      "title": "설계설명서·제안 덱 골격 빠르게 잡기",
+      "deliverable": "보고서",
+      "goal": "백지에서 시작하지 않게, 설계설명 목차·제안 덱 레이아웃 골격을 프롬프트로 깔고 내용만 채우기.",
+      "chain": ["gamma"],
+      "runnable": "guide",
+      "stepsHint": "공모 지침 핵심 → Gamma 프롬프트로 목차·덱 골격 → 섹션별 내 콘텐츠 주입 → 사내 템플릿으로 옷 갈아입히기",
+      "pitfalls": "기본 디자인 티 / 기밀 내용 외부입력 주의 / 골격만, 문장은 직접",
+      "level": "기본"
+    },
+    {
+      "id": "d5-realtime-render",
+      "title": "D5 실시간 렌더 + AI 텍스처·업스케일로 투시 마무리",
+      "deliverable": "렌더",
+      "goal": "라이노/스케치업 모델을 D5로 실시간 렌더하고 AI 텍스처·디테일·업스케일로 패널 투시를 마감.",
+      "chain": ["d5-render", "magnific", "enscape"],
+      "runnable": "guide",
+      "stepsHint": "모델 D5 라이브싱크 → 라이팅·에셋 세팅 → AI 텍스처/디테일 → 고해상 출력 → 필요시 Magnific 업스케일 → 일러 반입",
+      "pitfalls": "에셋 의존 룩 / 실시간≠최종품질 / GPU 부하",
+      "level": "기본"
+    },
+    {
+      "id": "cad-to-illustrator-own",
+      "title": "AutoCAD 도면 → 일러스트레이터 자동 변환 (자체 도구)",
+      "deliverable": "패널",
+      "goal": "DWG 도면을 색·선·해치·폰트까지 살려 일러로 자동 반입해, 손으로 다시 그리던 패널 도면 작업을 분 단위로.",
+      "chain": ["own:cad_to_ai_jsx", "vectorizer-ai"],
+      "runnable": "cad-jsx",
+      "stepsHint": "DWG 정리(레이어·해치) → cad_to_ai_jsx 로 plan/elevation/section 모드 변환 → 일러 JSX 실행 → 페이지·폰트(윤고딕) 자동 → 패널 배치 마무리",
+      "pitfalls": "레이어 규칙 의존 / bulge·width 케이스 / 도면 정리 선행 필요",
+      "level": "심화"
+    },
+    {
+      "id": "plan-to-3d",
+      "title": "평면 PNG → 빠른 매스 3D로 초기 검토",
+      "deliverable": "모델링",
+      "goal": "스캔 평면/러프 평면 한 장을 빠르게 3D 매스로 세워 초기 볼륨·동선 검토를.",
+      "chain": ["snaptrude", "tripo", "meshy"],
+      "runnable": "guide",
+      "stepsHint": "평면 이미지 → Snaptrude로 벽·층 세우기(또는 Tripo로 매스 변환) → 라이노/스케치업 반입 → 볼륨 검토",
+      "pitfalls": "치수 부정확(검토 골격용) / 정밀 모델 아님 / 후속 수작업",
+      "level": "기본"
+    }
+  ]
+}
