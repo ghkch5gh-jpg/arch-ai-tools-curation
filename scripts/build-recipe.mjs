@@ -239,6 +239,48 @@ function crawlFetch(url, { timeoutMs = 75000 } = {}) {
   });
 }
 
+// ===== Reddit 공식 OAuth API (스크래핑은 IP단 'network security' 차단 → 정식 통로만 동작) =====
+// 인증정보: gitignore 된 scripts/reddit.local.json {client_id, client_secret, user_agent, [username, password]}.
+// 파일 없거나 토큰 실패면 reddit 소스는 조용히 스킵(빈 문자열) — 작업 안 깨짐.
+let _redditToken = null, _redditTried = false;
+async function redditToken() {
+  if (_redditTried) return _redditToken;
+  _redditTried = true;
+  let cfg;
+  try { cfg = JSON.parse(await readFile("scripts/reddit.local.json", "utf8")); } catch { return null; }
+  if (!cfg.client_id || !cfg.client_secret) return null;
+  const ua = cfg.user_agent || "windows:dangsun-studio:1.0 (by /u/unknown)";
+  const basic = Buffer.from(`${cfg.client_id}:${cfg.client_secret}`).toString("base64");
+  const body = (cfg.username && cfg.password)
+    ? new URLSearchParams({ grant_type: "password", username: cfg.username, password: cfg.password })
+    : new URLSearchParams({ grant_type: "client_credentials" }); // userless(앱 전용) — 공개 읽기엔 충분
+  try {
+    const res = await fetch("https://www.reddit.com/api/v1/access_token", {
+      method: "POST",
+      headers: { Authorization: `Basic ${basic}`, "Content-Type": "application/x-www-form-urlencoded", "User-Agent": ua },
+      body,
+    });
+    if (!res.ok) return null;
+    const j = await res.json();
+    _redditToken = j.access_token ? { token: j.access_token, ua } : null;
+    return _redditToken;
+  } catch { return null; }
+}
+async function fetchReddit(apiUrl) {
+  const t = await redditToken();
+  if (!t) return "";
+  try {
+    const res = await fetch(apiUrl, { headers: { Authorization: `bearer ${t.token}`, "User-Agent": t.ua } });
+    if (!res.ok) return "";
+    const j = await res.json();
+    const posts = (j.data?.children || []).map((c) => c.data).filter(Boolean);
+    return posts.slice(0, 8).map((p) =>
+      `- ${p.title} (https://reddit.com${p.permalink}) · ${new Date(p.created_utc * 1000).toISOString().slice(0, 10)}`
+      + (p.selftext ? `\n  ${String(p.selftext).replace(/\s+/g, " ").slice(0, 150)}` : "")
+    ).join("\n");
+  } catch { return ""; }
+}
+
 // ===== OPTIONAL: 이번 주 새 소식 (가벼운 수집) =====
 // 고신호 core(collect:true)는 매주 + collect:false 보조 2개 + crawl 1개를 주차로 로테이션.
 // 실패/빈손이어도 OK — 그 섹션은 정직하게 '잠잠'으로 처리. general 피드는 ARCH_KW로 항목 필터.
@@ -256,7 +298,10 @@ async function lightCollect() {
       const url = s.url.replaceAll("__SINCE__", sinceIso).replaceAll("__SINCE_TS__", String(sinceTs));
       const kw = s.general ? ARCH_KW : null;
       let text = "";
-      if (s.kind === "crawl") {
+      if (s.kind === "reddit") {
+        const raw = await fetchReddit(url); // 공식 OAuth API (인증 없으면 "")
+        text = (kw ? raw.split("\n").filter((l) => kw.test(l)).join("\n") : raw).slice(0, 1600);
+      } else if (s.kind === "crawl") {
         const raw = await crawlFetch(url); // --mode html (page_source)
         let t;
         if (/<item[\s>]|<entry[\s>]/i.test(raw)) t = parseFeed(raw, 8, kw);   // 피드면 파싱

@@ -1,0 +1,10 @@
+{
+  "_안내": "이 파일을 복사해 같은 폴더에 reddit.local.json 으로 저장하고 값을 채우세요(reddit.local.json 은 gitignore 됨). 비우면 reddit 소스는 조용히 스킵됩니다.",
+  "_앱등록": "https://www.reddit.com/prefs/apps → 'create another app' → type: script → name: dangsun-studio, redirect uri: http://localhost:8080 (안 씀). 만든 뒤 앱 이름 밑 문자열 = client_id, 'secret' = client_secret.",
+  "client_id": "여기에_client_id",
+  "client_secret": "여기에_client_secret",
+  "user_agent": "windows:dangsun-studio:1.0 (by /u/본인레딧아이디)",
+  "_선택": "client_id/secret 만으로(client_credentials, 공개글 읽기) 충분. 만약 결과가 비면 아래 username/password 를 채워 password grant 로 전환(스크립트 앱 소유 계정).",
+  "username": "",
+  "password": ""
+}

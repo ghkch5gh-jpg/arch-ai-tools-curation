@@ -158,27 +158,27 @@
   },
   {
     "name": "Reddit r/rhino (이번 주 인기)",
-    "url": "https://www.reddit.com/r/rhino/top.rss?t=week&limit=25",
-    "kind": "rss",
+    "url": "https://oauth.reddit.com/r/rhino/top?t=week&limit=25",
+    "kind": "reddit",
     "tag": "reddit-rhino",
-    "collect": false,
-    "note": "라이노 실무자. 플러그인·AI 워크플로·렌더 후기. 주간이라 429 위험 낮음."
+    "collect": true,
+    "note": "라이노 실무자(플러그인·AI워크플로·렌더후기). 공식 OAuth API — scripts/reddit.local.json 필요. 스크래핑은 IP단 차단돼 OAuth만 동작."
   },
   {
     "name": "Reddit r/grasshopper3d (이번 주 인기)",
-    "url": "https://www.reddit.com/r/grasshopper3d/top.rss?t=week&limit=25",
-    "kind": "rss",
+    "url": "https://oauth.reddit.com/r/grasshopper3d/top?t=week&limit=25",
+    "kind": "reddit",
     "tag": "reddit-gh",
-    "collect": false,
-    "note": "그래스호퍼 파라메트릭. ML 폼파인딩·정의·플러그인."
+    "collect": true,
+    "note": "그래스호퍼 파라메트릭(ML 폼파인딩·정의·플러그인). 공식 OAuth API(reddit.local.json)."
   },
   {
     "name": "Reddit r/StableDiffusion 건축 검색 (이번 주)",
-    "url": "https://www.reddit.com/r/StableDiffusion/search.rss?q=architecture+OR+architectural+OR+interior&restrict_sr=1&sort=top&t=week",
-    "kind": "rss",
+    "url": "https://oauth.reddit.com/r/StableDiffusion/search?q=architecture+OR+architectural+OR+interior&restrict_sr=1&sort=top&t=week&limit=25",
+    "kind": "reddit",
     "tag": "reddit-sd",
-    "collect": false,
-    "note": "건축 렌더/ControlNet/LoRA 워크플로우. 비주얼 단계 소스."
+    "collect": true,
+    "note": "건축 렌더/ControlNet/LoRA 워크플로우(고유 신호). 공식 OAuth API(reddit.local.json). McNeel에 없는 SD 신호."
   },
   {
     "name": "Hacker News — architecture render (이번 주)",

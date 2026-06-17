@@ -1,3 +1,5 @@
 node_modules/
 .env
 daily.log
+weekly.log
+scripts/reddit.local.json
