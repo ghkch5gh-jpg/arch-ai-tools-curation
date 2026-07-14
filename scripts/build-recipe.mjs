@@ -1,18 +1,19 @@
 #!/usr/bin/env node
-// 주간 "실전 레시피" 생성기 — 백로그(recipes-catalog) → 도구 grounding → claude -p (정액제)
+// 주간 "실전 레시피" 생성기 — 백로그(recipes-catalog) → 도구 grounding → codex exec (구독 인증)
 //   → 한 주 한 편, 깊은 단계별 워크플로우 회차 .md(.ni 시맨틱 HTML). 당선 /studio.
 // build-local(매일 도감)과 짝: 이쪽은 churn 없이 *재현 가능한 따라하기 가이드* 한 편/주.
 //   DRY_RUN=1 : 레시피 선택+프롬프트만(stderr) 출력, 파일 안 씀
 //   FORCE=1   : 오늘 날짜 파일 있으면 덮어쓰기
 //   RECIPE_ID=<id> : 로테이션 무시하고 특정 레시피 강제
 //   ARTIFACT=<경로> : 결과 섹션에 <img> 주입(실제 산출물 이미지)
-//   CLAUDE_MODEL : 모델(기본 sonnet — 레시피는 opus가 낫지만 비용 맞춰 기본 sonnet, env 존중)
+//   CODEX_MODEL=<선택>   CODEX_REASONING_EFFORT=low|medium|high|xhigh
 import { readFile, writeFile, readdir, access } from "node:fs/promises";
 import { spawn } from "node:child_process";
 
 const DRY_RUN = process.env.DRY_RUN === "1";
 const FORCE = process.env.FORCE === "1";
-const CLAUDE_MODEL = process.env.CLAUDE_MODEL || "sonnet";
+const CODEX_MODEL = process.env.CODEX_MODEL || "";
+const CODEX_REASONING_EFFORT = process.env.CODEX_REASONING_EFFORT || "high";
 const FORCE_RECIPE_ID = process.env.RECIPE_ID || "";
 const ARTIFACT = process.env.ARTIFACT || "";
 
@@ -328,7 +329,7 @@ let news = [];
 try { news = await lightCollect(); } catch { news = []; }
 console.log(`이번 주 새 소식 수집: ${news.length}개 소스 확보 (core+로테이션)`);
 
-// ===== claude -p 프롬프트 조립 =====
+// ===== codex exec 프롬프트 조립 =====
 const chainArrow = chainTools.map((c) => c.name).join(" → ");
 const chainBlock = chainTools.map((c, i) => {
   if (c.own) return `### ${i + 1}. ${c.name} [own]\n- 역할/설명: ${c.blurb}\n- 가격: ${c.price} · 플랫폼: ${c.platform} (외부 링크 없음)`;
@@ -427,23 +428,25 @@ if (DRY_RUN) {
   process.exit(0);
 }
 
-// ===== claude -p 호출 (build-local 동일) =====
-function callClaude(promptText) {
+// ===== codex exec 호출 (build-local 동일) =====
+function callCodex(promptText) {
   return new Promise((resolve, reject) => {
-    const args = ["-p", "--output-format", "text", "--allowedTools", "", "--model", CLAUDE_MODEL];
-    console.log(`claude -p (${CLAUDE_MODEL}) 호출...`);
-    const child = spawn("claude", args, { stdio: ["pipe", "pipe", "inherit"], shell: true });
+    const args = ["exec", "--ephemeral", "--ignore-user-config", "--skip-git-repo-check", "--sandbox", "read-only", "-c", `model_reasoning_effort=${CODEX_REASONING_EFFORT}`];
+    if (CODEX_MODEL) args.push("--model", CODEX_MODEL);
+    args.push("-");
+    console.log(`codex exec (${CODEX_MODEL || "default"}, ${CODEX_REASONING_EFFORT}) 호출...`);
+    const child = spawn(process.platform === "win32" ? "codex.cmd" : "codex", args, { stdio: ["pipe", "pipe", "inherit"], shell: process.platform === "win32", windowsHide: true });
     let out = "";
     const timer = setTimeout(() => { child.kill(); reject(new Error("타임아웃 5분")); }, 5 * 60 * 1000);
     child.stdout.on("data", (d) => (out += d.toString()));
     child.on("error", (e) => { clearTimeout(timer); reject(e); });
-    child.on("close", (code) => { clearTimeout(timer); code === 0 ? resolve(out) : reject(new Error(`claude exit ${code}`)); });
+    child.on("close", (code) => { clearTimeout(timer); code === 0 ? resolve(out) : reject(new Error(`codex exit ${code}`)); });
     child.stdin.write(promptText);
     child.stdin.end();
   });
 }
 
-const raw = await callClaude(prompt);
+const raw = await callCodex(prompt);
 const jm = raw.match(/```json\s*([\s\S]*?)\s*```/) || raw.match(/\{[\s\S]*\}/);
 if (!jm) { console.error("JSON 미발견:", raw.slice(0, 600)); process.exit(1); }
 let data;

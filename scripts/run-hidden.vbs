@@ -2,10 +2,11 @@
 ' Task Scheduler runs:  wscript.exe "...\scripts\run-hidden.vbs"
 ' (Weekly 실전 레시피 generator. The daily 돌려쓰기 generator is retired —
 '  change the task trigger from daily to weekly Monday 09:30 to match.)
-Dim fso, scriptDir, root, ps1, cmd
+Dim fso, scriptDir, root, ps1, cmd, exitCode
 Set fso = CreateObject("Scripting.FileSystemObject")
 scriptDir = fso.GetParentFolderName(WScript.ScriptFullName)
 root = fso.GetParentFolderName(scriptDir)
 ps1 = root & "\scripts\run-weekly.ps1"
 cmd = "powershell.exe -NoProfile -ExecutionPolicy Bypass -File """ & ps1 & """"
-CreateObject("WScript.Shell").Run cmd, 0, False
+exitCode = CreateObject("WScript.Shell").Run(cmd, 0, True)
+WScript.Quit exitCode

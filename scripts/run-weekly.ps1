@@ -4,7 +4,7 @@
 # ASCII-only on purpose: the repo lives under a Korean path.
 $ErrorActionPreference = 'Continue'
 
-# Scheduled tasks run with a minimal PATH - point at node / git / npm-global (claude) explicitly.
+# Scheduled tasks run with a minimal PATH - point at node / git / npm-global (codex) explicitly.
 $env:Path = "C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Users\myh43\AppData\Roaming\npm;$env:Path"
 
 $repo = Join-Path ([Environment]::GetFolderPath('Desktop')) 'work\_inspect\arch-ai-tools-curation'
@@ -19,8 +19,8 @@ function Log($m) {
 Log "==== start ===="
 git pull --quiet origin main *>> $log
 
-# Recipes deserve the stronger model; build-recipe.mjs honors CLAUDE_MODEL.
-$env:CLAUDE_MODEL = 'opus'
+# Recipes deserve stronger reasoning; build-recipe.mjs honors CODEX_REASONING_EFFORT.
+$env:CODEX_REASONING_EFFORT = 'high'
 node scripts/build-recipe.mjs *>> $log
 if ($LASTEXITCODE -ne 0) { Log "recipe generator failed (exit $LASTEXITCODE)"; exit 1 }
 
